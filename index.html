@@ -10,27 +10,1160 @@
       href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="main.css" />
+    <style>
+:root {
+  color-scheme: only light;
+  --bg: #f5f0e4;
+  --bg-soft: rgba(255, 255, 255, 0.72);
+  --bg-strong: rgba(255, 255, 255, 0.92);
+  --bg-deep: #ede2cf;
+  --border: rgba(125, 98, 61, 0.25);
+  --border-strong: rgba(166, 120, 55, 0.5);
+  --border-highlight: rgba(240, 178, 42, 0.45);
+  --shadow: 0 20px 42px rgba(86, 63, 34, 0.18);
+  --shadow-soft: 0 8px 24px rgba(86, 63, 34, 0.12);
+  --text: #4d331a;
+  --text-soft: rgba(77, 51, 26, 0.72);
+  --ink: rgba(73, 47, 24, 0.88);
+  --accent: #c28f2c;
+  --accent-strong: #f0b22a;
+  --accent-soft: rgba(194, 143, 44, 0.12);
+  --accent-glow: rgba(240, 178, 42, 0.32);
+  --brand-glow: rgba(194, 143, 44, 0.28);
+  --danger: #b54b3b;
+  --success: #2b7a58;
+  --font-main: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --font-display: 'Ma Shan Zheng', 'STKaiti', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  color: var(--text);
+  line-height: 1.65;
+  background: radial-gradient(1200px circle at 15% 20%, rgba(255, 247, 231, 0.9), transparent 60%),
+    radial-gradient(880px circle at 82% -5%, rgba(255, 210, 148, 0.25), transparent 55%),
+    radial-gradient(1200px circle at 90% 95%, rgba(90, 140, 120, 0.2), transparent 62%),
+    linear-gradient(135deg, #fdf7ec 0%, #efe0c7 48%, #f8eed8 100%);
+  background-color: var(--bg-deep);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('https://i.postimg.cc/1t8bYxSY/paper-fiber.png');
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(240, 178, 42, 0.12) 0%, rgba(255, 255, 255, 0) 40%, rgba(36, 104, 82, 0.12) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  z-index: -2;
+}
+
+::selection {
+  background: rgba(194, 143, 44, 0.35);
+  color: #2f1b0b;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(194, 143, 44, 0.4);
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.app {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 48px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  z-index: 0;
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  inset: 12% 8% auto;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 240, 204, 0.32) 0%, rgba(255, 255, 255, 0) 65%);
+  filter: blur(0.4px);
+  z-index: -1;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.masthead {
+  position: relative;
+  border-radius: 32px;
+  padding: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 226, 186, 0.86));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+@supports (backdrop-filter: blur(14px)) {
+  .masthead {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+  }
+}
+
+.masthead::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 360px;
+  background: radial-gradient(circle at 35% 35%, rgba(240, 178, 42, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(43, 122, 88, 0.22), transparent 60%);
+  opacity: 0.85;
+  z-index: 0;
+}
+
+.masthead::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0) 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.masthead__frame {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: stretch;
+  padding: clamp(28px, 4vw, 42px) clamp(24px, 5vw, 48px);
+}
+
+.masthead__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.masthead__badge {
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  padding: 14px 22px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 224, 158, 0.95), rgba(211, 152, 70, 0.9));
+  color: #4b2d0c;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 16px 32px rgba(156, 112, 53, 0.28);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+.masthead__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.masthead__title {
+  margin: 0;
+  font-size: clamp(2.2rem, 2vw + 1.6rem, 2.8rem);
+  letter-spacing: 0.16em;
+  font-family: var(--font-display);
+  color: var(--accent);
+  text-shadow: 0 10px 24px rgba(156, 112, 53, 0.25);
+}
+
+.masthead__lead {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 640px;
+}
+
+.masthead__meta {
+  margin: 0;
+  padding: 18px 20px;
+  list-style: none;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(194, 143, 44, 0.22);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.masthead__meta li {
+  position: relative;
+  padding-left: 20px;
+  color: rgba(77, 51, 26, 0.78);
+  font-size: 0.95rem;
+}
+
+.masthead__meta li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(240, 178, 42, 0.9), rgba(211, 152, 70, 0.65));
+  box-shadow: 0 0 0 4px rgba(240, 178, 42, 0.16);
+}
+
+.masthead__art {
+  position: relative;
+  margin: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  place-items: stretch;
+  min-height: 260px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 18px 32px rgba(94, 68, 40, 0.28);
+}
+
+.masthead__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  transition: transform 12s ease;
+}
+
+.masthead__frame:hover .masthead__art img {
+  transform: scale(1.08);
+}
+
+.masthead__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(32, 19, 12, 0.35) 0%, rgba(32, 19, 12, 0.1) 65%, rgba(255, 255, 255, 0.2) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+
+.card {
+  position: relative;
+  background: var(--bg-soft);
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  padding: 30px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 50%);
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(14px);
+  }
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  position: relative;
+  z-index: 1;
+}
+
+.card h2::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(240, 178, 42, 0.7), rgba(240, 178, 42, 0));
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: rgba(166, 120, 55, 0.98);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+
+.destiny {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.destiny::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 12% -10%, rgba(255, 216, 130, 0.45), transparent 60%),
+    radial-gradient(circle at 85% 100%, rgba(225, 199, 162, 0.35), transparent 62%);
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 0;
+}
+
+.destiny__glyph {
+  position: absolute;
+  top: -80px;
+  right: -40px;
+  width: 260px;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle, rgba(240, 178, 42, 0.15) 0%, rgba(240, 178, 42, 0) 70%);
+  border: 1px solid rgba(194, 143, 44, 0.12);
+  border-radius: 50%;
+  filter: blur(0.2px);
+  opacity: 0.8;
+  z-index: 0;
+  animation: spin 28s linear infinite;
+  pointer-events: none;
+}
+
+.card > .destiny__glyph {
+  position: absolute;
+  z-index: 0;
+}
+
+.destiny__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.destiny__header .btn {
+  flex-shrink: 0;
+}
+
+.destiny__sub {
+  margin: 4px 0 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+
+.destiny__scoreboard {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 240, 210, 0.88));
+  border: 1px solid rgba(194, 143, 44, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 14px 32px rgba(156, 112, 53, 0.18);
+}
+
+.destiny__scoreboard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(240, 178, 42, 0.2);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.scoreboard__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.scoreboard__label {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scoreboard__value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-shadow: 0 6px 16px rgba(194, 143, 44, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.destiny__progress {
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(194, 143, 44, 0.35);
+  background-color: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(125, 98, 61, 0.16);
+}
+
+.destiny__progress::-webkit-progress-bar {
+  background-color: transparent;
+  border-radius: 999px;
+}
+
+.destiny__progress::-webkit-progress-value {
+  background: linear-gradient(90deg, rgba(194, 143, 44, 0.8), rgba(240, 178, 42, 1));
+  border-radius: 999px;
+  box-shadow: 0 6px 12px rgba(194, 143, 44, 0.25);
+}
+
+.destiny__progress::-moz-progress-bar {
+  background: linear-gradient(90deg, rgba(194, 143, 44, 0.8), rgba(240, 178, 42, 1));
+  border-radius: 999px;
+}
+
+.destiny__dice {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(77, 51, 26, 0.75);
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px dashed rgba(194, 143, 44, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 240, 210, 0.76));
+  border-radius: 18px;
+  border: 1px solid rgba(166, 120, 55, 0.22);
+  padding: 18px 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 12px 24px rgba(94, 68, 40, 0.12);
+}
+
+.summary__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.95rem;
+  counter-reset: destiny;
+}
+
+.summary__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-left: 26px;
+  position: relative;
+}
+
+.summary__item::before {
+  counter-increment: destiny;
+  content: counter(destiny, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(166, 120, 55, 0.7);
+}
+
+.summary__item span:last-child {
+  font-weight: 600;
+}
+
+.summary__cost {
+  font-weight: 600;
+}
+
+.summary__cost--spent {
+  color: var(--accent);
+}
+
+.summary__cost--gain {
+  color: #1d5a40;
+}
+
+.summary__empty {
+  color: rgba(77, 51, 26, 0.56);
+  font-style: italic;
+}
+
+.toast {
+  min-height: 24px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  align-self: flex-start;
+  font-size: 0.92rem;
+  background: rgba(181, 75, 59, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(181, 75, 59, 0.35);
+  box-shadow: 0 12px 24px rgba(181, 75, 59, 0.18);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.field,
+.custom-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field span,
+.field__label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.field input,
+.field select,
+.custom-input input,
+textarea {
+  font-family: var(--font-main);
+  border-radius: 14px;
+  border: 1px solid rgba(125, 98, 61, 0.25);
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input::placeholder,
+.custom-input input::placeholder,
+textarea::placeholder {
+  color: rgba(77, 51, 26, 0.45);
+}
+
+.field input:focus,
+.field select:focus,
+.custom-input input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(194, 143, 44, 0.15);
+}
+
+.field__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(77, 51, 26, 0.65);
+}
+
+.field-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(166, 120, 55, 0.22);
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.chip input {
+  display: none;
+}
+
+.chip.is-active {
+  border-color: var(--accent);
+  background: linear-gradient(120deg, rgba(255, 240, 204, 0.9), rgba(211, 152, 70, 0.28));
+  color: var(--accent);
+  box-shadow: 0 8px 18px rgba(194, 143, 44, 0.22);
+  text-shadow: 0 4px 12px rgba(194, 143, 44, 0.28);
+}
+
+.chip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.option-section {
+  position: relative;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(166, 120, 55, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 20px rgba(94, 68, 40, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.option-section.is-collapsed {
+  gap: 12px;
+}
+
+.option-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.option-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.option-section__header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
+.option-section__content {
+  position: relative;
+  z-index: 1;
+}
+
+.option-section__header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(77, 51, 26, 0.66);
+}
+
+.collapse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.collapse-toggle:focus-visible {
+  outline: 2px solid rgba(194, 143, 44, 0.55);
+  outline-offset: 4px;
+}
+
+.collapse-toggle__title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.collapse-toggle__icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(166, 120, 55, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.collapse-toggle__icon::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid rgba(125, 98, 61, 0.8);
+  border-right: 2px solid rgba(125, 98, 61, 0.8);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.option-section.is-collapsed .collapse-toggle__icon {
+  transform: rotate(-90deg);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.option-section.is-collapsed .collapse-toggle__icon::before {
+  transform: rotate(135deg);
+}
+
+.option-card {
+  display: block;
+  position: relative;
+  transition: transform 0.25s ease;
+  color: inherit;
+}
+
+.option-card--gain .option-cost {
+  color: #1d5a40;
+  background: rgba(43, 122, 88, 0.14);
+  border-color: rgba(43, 122, 88, 0.28);
+}
+
+.option-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.option-shell {
+  position: relative;
+  border: 1px solid rgba(125, 98, 61, 0.22);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  overflow: hidden;
+}
+
+.option-card:hover .option-shell {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 28px rgba(94, 68, 40, 0.18);
+}
+
+.option-card input:checked + .option-shell {
+  border-color: var(--border-strong);
+  background: linear-gradient(135deg, rgba(255, 239, 210, 0.95), rgba(231, 195, 134, 0.85));
+  box-shadow: 0 18px 32px rgba(166, 120, 55, 0.25);
+}
+
+.option-card--gain input:checked + .option-shell {
+  border-color: rgba(43, 122, 88, 0.45);
+  background: linear-gradient(135deg, rgba(210, 246, 228, 0.95), rgba(132, 204, 170, 0.85));
+  box-shadow: 0 18px 32px rgba(43, 122, 88, 0.22);
+}
+
+.option-card input:focus-visible + .option-shell {
+  box-shadow: 0 0 0 3px rgba(194, 143, 44, 0.35), 0 12px 24px rgba(166, 120, 55, 0.2);
+}
+
+.option-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.option-shell__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.option-name {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+}
+
+.option-cost {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(194, 143, 44, 0.14);
+  color: var(--accent);
+  border: 1px solid rgba(194, 143, 44, 0.2);
+}
+
+.option-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(77, 51, 26, 0.74);
+  line-height: 1.65;
+}
+
+.option-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: rgba(77, 51, 26, 0.65);
+}
+
+.option-tag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: rgba(194, 143, 44, 0.16);
+  border: 1px solid rgba(194, 143, 44, 0.22);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .option-shell {
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(12px);
+  }
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-weight: 600;
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+  color: #fff;
+  background: linear-gradient(135deg, #d29a38, #b67920);
+  box-shadow: 0 12px 24px rgba(166, 120, 55, 0.25);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 16px rgba(166, 120, 55, 0.3);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(194, 143, 44, 0.35), 0 12px 24px rgba(166, 120, 55, 0.25);
+}
+
+.btn--secondary {
+  background: linear-gradient(135deg, #f4e4c2, #d4b891);
+  color: var(--text);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #2b7a58, #155f45);
+  box-shadow: 0 12px 26px rgba(43, 122, 88, 0.28);
+}
+
+.btn--glow {
+  background: linear-gradient(135deg, #f0b22a, #c28f2c);
+  box-shadow: 0 16px 32px rgba(194, 143, 44, 0.32);
+  color: #4b2d0c;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 220px;
+  line-height: 1.7;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.start-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.start-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 10%, rgba(43, 122, 88, 0.2), transparent 55%),
+    radial-gradient(circle at 90% 80%, rgba(194, 143, 44, 0.2), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.start-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.start-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.start-message {
+  border-radius: 18px;
+  padding: 16px 18px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border: 1px solid rgba(166, 120, 55, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.start-message.success {
+  background: linear-gradient(135deg, rgba(43, 122, 88, 0.18), rgba(255, 255, 255, 0.6));
+  border-color: rgba(43, 122, 88, 0.35);
+  color: #1d5a40;
+}
+
+.start-message.error {
+  background: linear-gradient(135deg, rgba(181, 75, 59, 0.15), rgba(255, 255, 255, 0.6));
+  border-color: rgba(181, 75, 59, 0.35);
+  color: var(--danger);
+}
+
+.list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 8px 0 0;
+  list-style: none;
+}
+
+.list-inline li {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(194, 143, 44, 0.18);
+  color: var(--accent);
+  font-size: 0.85rem;
+  border: 1px solid rgba(194, 143, 44, 0.22);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .masthead__frame {
+    grid-template-columns: 1fr;
+  }
+
+  .masthead__art {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 32px 18px 48px;
+  }
+
+  .masthead__frame {
+    padding: 28px;
+    gap: 28px;
+  }
+
+  .masthead__badge {
+    font-size: 1.4rem;
+  }
+
+  .masthead__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 24px 22px;
+  }
+
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .masthead__frame {
+    padding: 24px;
+  }
+
+  .masthead__title {
+    font-size: clamp(1.8rem, 4vw + 1.2rem, 2.4rem);
+  }
+
+  .masthead__meta {
+    padding: 16px;
+  }
+
+  .destiny__scoreboard {
+    padding: 14px 16px;
+  }
+
+  .btn {
+    padding: 11px 20px;
+  }
+
+  .destiny__glyph {
+    width: 200px;
+    top: -60px;
+    right: -60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+</style>
   </head>
   <body>
     <div class="app">
       <header class="masthead">
-        <div class="masthead__badge">无双志</div>
-        <div>
-          <h1>天命起源构筑台</h1>
-          <p>
-            根据骨架提示为角色规划身份、天赋与行囊。掷动天命点后，在规约内挑选最佳组合，生成独属于你的史诗开端。
-          </p>
+        <div class="masthead__frame">
+          <div class="masthead__intro">
+            <div class="masthead__badge">无双志</div>
+            <div class="masthead__body">
+              <h1 class="masthead__title">天命起源构筑台</h1>
+              <p class="masthead__lead">
+                根据骨架提示为角色规划身份、天赋与行囊。掷动天命点后，在规约内挑选最佳组合，生成独属于你的史诗开端。
+              </p>
+              <ul class="masthead__meta">
+                <li>掷骰规划天命点，平衡身份、天赋与缺陷</li>
+                <li>依世界书展开种族身份，解锁专属出生地</li>
+                <li>一键生成初始剧本，为冒险写下第一章</li>
+              </ul>
+            </div>
+          </div>
+          <figure class="masthead__art" aria-hidden="true">
+            <img
+              src="data:image/png;base64,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"
+              alt="身着赤纹华服的女修真者立于古殿前，目光如炬"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </header>
 
       <section class="card destiny" aria-labelledby="destiny-heading">
+        <span class="destiny__glyph" aria-hidden="true"></span>
         <div class="destiny__header">
           <div>
             <h2 id="destiny-heading">天命点</h2>
             <p class="destiny__sub">掷骰决定起点，所有选项均需消耗相应天命点。</p>
           </div>
-          <button class="btn" id="roll-button" type="button">掷天命骰</button>
+          <button class="btn btn--glow" id="roll-button" type="button">掷天命骰</button>
         </div>
 
         <div class="destiny__scoreboard">
@@ -125,47 +1258,72 @@
 
         <section class="card" aria-labelledby="talent-heading">
           <h2 id="talent-heading">天赋与缺陷</h2>
-          <div class="option-section">
-            <header class="option-section__header">
-              <h3>天赋</h3>
+          <div class="option-section" data-collapsible>
+            <div class="option-section__header">
+              <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="talent-options">
+                <span class="collapse-toggle__title">天赋</span>
+                <span class="collapse-toggle__icon" aria-hidden="true"></span>
+              </button>
               <p>根据种族觉醒专属天赋。每项均需投入天命点。</p>
-            </header>
-            <div class="option-grid" data-options="talent"></div>
+            </div>
+            <div class="option-section__content" id="talent-options">
+              <div class="option-grid" data-options="talent"></div>
+            </div>
           </div>
 
-          <div class="option-section">
-            <header class="option-section__header">
-              <h3>基础仙术</h3>
+          <div class="option-section" data-collapsible>
+            <div class="option-section__header">
+              <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="spell-options">
+                <span class="collapse-toggle__title">基础仙术</span>
+                <span class="collapse-toggle__icon" aria-hidden="true"></span>
+              </button>
               <p>可从基础法术中挑选入门能力，用于战斗与探索。</p>
-            </header>
-            <div class="option-grid" data-options="spell"></div>
+            </div>
+            <div class="option-section__content" id="spell-options">
+              <div class="option-grid" data-options="spell"></div>
+            </div>
           </div>
 
-          <div class="option-section">
-            <header class="option-section__header">
-              <h3>缺陷</h3>
-              <p>选择身体或灵魂的缺陷，亦需要天命点来诠释宿命羁绊。</p>
-            </header>
-            <div class="option-grid" data-options="flaw"></div>
+          <div class="option-section" data-collapsible>
+            <div class="option-section__header">
+              <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="flaw-options">
+                <span class="collapse-toggle__title">缺陷</span>
+                <span class="collapse-toggle__icon" aria-hidden="true"></span>
+              </button>
+              <p>刻画身体或灵魂的束缚，可返还少量天命点，以换取更多抉择余裕。</p>
+            </div>
+            <div class="option-section__content" id="flaw-options">
+              <div class="option-grid" data-options="flaw"></div>
+            </div>
           </div>
         </section>
 
         <section class="card" aria-labelledby="pack-heading">
           <h2 id="pack-heading">行囊</h2>
-          <div class="option-section">
-            <header class="option-section__header">
-              <h3>装备</h3>
+          <div class="option-section" data-collapsible>
+            <div class="option-section__header">
+              <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="equipment-options">
+                <span class="collapse-toggle__title">装备</span>
+                <span class="collapse-toggle__icon" aria-hidden="true"></span>
+              </button>
               <p>从武器、防具与饰品中挑选起始装备。</p>
-            </header>
-            <div class="option-grid" data-options="equipment"></div>
+            </div>
+            <div class="option-section__content" id="equipment-options">
+              <div class="option-grid" data-options="equipment"></div>
+            </div>
           </div>
 
-          <div class="option-section">
-            <header class="option-section__header">
-              <h3>特殊物品</h3>
+          <div class="option-section" data-collapsible>
+            <div class="option-section__header">
+              <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="item-options">
+                <span class="collapse-toggle__title">特殊物品</span>
+                <span class="collapse-toggle__icon" aria-hidden="true"></span>
+              </button>
               <p>可携带至少五件特殊任务道具，增添剧情线索。</p>
-            </header>
-            <div class="option-grid" data-options="item"></div>
+            </div>
+            <div class="option-section__content" id="item-options">
+              <div class="option-grid" data-options="item"></div>
+            </div>
           </div>
         </section>
 
@@ -185,6 +1343,1059 @@
       </div>
     </div>
 
-    <script type="module" src="main.js"></script>
+    <script type="module">
+const DATA = {
+  genders: [
+    { key: 'male', label: '男' },
+    { key: 'female', label: '女' },
+    { key: 'fluid', label: '流光之性' },
+    { key: 'custom', label: '自定义' }
+  ],
+  appearances: [
+    { id: 'heroic', label: '剑眉星目，披风猎猎的侠客气质' },
+    { id: 'elegant', label: '青衫如竹，举止温雅沉静' },
+    { id: 'mystic', label: '墨发如瀑，金瞳映着灵光' },
+    { id: 'scarred', label: '满身旧伤，眉宇坚毅如磐石' },
+    { id: 'gentle', label: '眉目柔和，笑意如春风' }
+  ],
+  eras: [
+    { id: 'yellow_turban', label: '黄巾烽起 · 中平元年 (184 年)', detail: '张角揭竿，民心震荡，诸侯暗潮涌动。' },
+    { id: 'qilin_fire', label: '麒麟火落 · 光和七年 (184 年末)', detail: '洛阳上空坠落异火，群雄争探天意。' },
+    { id: 'luoyang_siege', label: '洛阳将倾 · 中平六年 (189 年)', detail: '董卓挟天子迁都，洛阳城内军阀相逼。' },
+    { id: 'coalition_muster', label: '十八路会盟 · 初平元年 (190 年)', detail: '群雄会盟虎牢，征战号角响彻九州。' },
+    { id: 'phoenix_uprising', label: '凤鸣江东 · 初平二年 (191 年)', detail: '江东势起，江海间隐现神秘凤凰之兆。' }
+  ],
+  races: [
+    {
+      id: 'yanhan',
+      name: '炎汉世家',
+      description: '中原旧贵的血脉传承者，熟悉朝堂律令与兵法秘闻。',
+      identities: [
+        {
+          key: 'yanhan_scribe',
+          name: '洛阳书吏',
+          cost: 4,
+          desc: '受业于鸿都门学，以笔墨掌控情报与文书。',
+          hook: '奉命编纂失落的《玄武兵录》，卷宗引出禁忌秘辛。',
+          locations: ['洛阳·宣德坊', '太学讲堂', '洛水渡口', '鸿都门学', '未央坊藏书阁']
+        },
+        {
+          key: 'yanhan_guard',
+          name: '虎贲游骑',
+          cost: 8,
+          desc: '身披铁甲，护卫洛阳禁宫的精锐骑兵。',
+          hook: '守备虎牢关时遭遇异象，需要调查神秘军阵。',
+          locations: ['洛阳·武德殿', '虎牢前线营地', '洛阳西营', '北邙狩猎场', '校尉府训练场']
+        },
+        {
+          key: 'yanhan_spy',
+          name: '细作主事',
+          cost: 9,
+          desc: '司隶校尉麾下暗探首领，精于潜伏与策反。',
+          hook: '暗部失联，需在乱世之中重建隐秘情报网。',
+          locations: ['洛阳·暗巷', '司隶密坊', '成皋驿馆', '函谷关秘室', '闻香楼隐阁']
+        },
+        {
+          key: 'yanhan_alchemist',
+          name: '丹青祭酒',
+          cost: 7,
+          desc: '嵩岳道院赐职，以丹药和阵法辅佐王室。',
+          hook: '受命调制镇社灵丹，却发现药引竟与皇室血脉相连。',
+          locations: ['嵩岳道院', '少室炼丹台', '天枢观', '嵩阳祭坛', '洛阳丹坊']
+        },
+        {
+          key: 'yanhan_bard',
+          name: '宫廷琴师',
+          cost: 5,
+          desc: '穿梭宫阙与权贵府邸，乐音可安人心亦可传密谕。',
+          hook: '琴谱《凤落云霄》遗失，牵出宫中暗线。',
+          locations: ['长乐宫前殿', '金銮台', '东市雅集', '相国府雅院', '宜春苑水榭']
+        }
+      ],
+      talents: [
+        { key: 'dragon_blood', name: '龙脉映血', cost: 9, desc: '觉醒炎汉王族的残存龙脉，武力与统御皆大幅提升。', tags: ['血脉', '武力+谋略'] },
+        { key: 'blade_edge', name: '锋芒毕露', cost: 6, desc: '刀剑合一，实战中武力检定+8。', tags: ['武技'] },
+        { key: 'benevolent_plan', name: '仁策妙算', cost: 5, desc: '熟稔朝局，谋略检定+6，并可调动朝廷资源一次。', tags: ['谋略'] },
+        { key: 'tiger_spirit', name: '虎臣胆识', cost: 4, desc: '无惧战阵，每场战斗首次受创减半。', tags: ['防御'] },
+        { key: 'literati', name: '文墨天成', cost: 3, desc: '琴棋书画皆通，魅力检定+5。', tags: ['魅力'] }
+      ]
+    },
+    {
+      id: 'yunlan',
+      name: '云岚妖族',
+      description: '栖息青丘的灵狐与羽族后裔，善于变化与风行。',
+      identities: [
+        {
+          key: 'yunlan_wanderer',
+          name: '青丘行者',
+          cost: 6,
+          desc: '巡游雾林，维系妖族与人界的联络者。',
+          hook: '雾林中浮现断裂的远古阵痕，需要重启山海通道。',
+          locations: ['青丘雾林', '碧落台', '灵狐洞府', '燕丘渡口', '云岚市集']
+        },
+        {
+          key: 'yunlan_priest',
+          name: '风祈祭司',
+          cost: 8,
+          desc: '侍奉风神，掌控天象与祝祷的祭司。',
+          hook: '守护风祭坛之风眼被封，需要取回失落风铃。',
+          locations: ['风祭坛', '神巫殿', '赤霞峰顶', '风歌峡谷', '灵息神树']
+        },
+        {
+          key: 'yunlan_assassin',
+          name: '影织刺客',
+          cost: 10,
+          desc: '操纵影丝的刺客，善于突然袭击与隐匿。',
+          hook: '受命暗杀叛族长老，却发现对方掌握族群秘密。',
+          locations: ['暗影裂隙', '夜幕集市', '雾隐巷', '幽翎驿馆', '青丘下城']
+        },
+        {
+          key: 'yunlan_scout',
+          name: '天穹斥候',
+          cost: 7,
+          desc: '御风巡空的侦查者，肩负守护边界之责。',
+          hook: '浮空堡垒出现裂缝，需追查来自星海的异族踪迹。',
+          locations: ['苍穹瞭望台', '风暴壁垒', '凌霄天阶', '高空猎场', '浮空驿站']
+        },
+        {
+          key: 'yunlan_tamer',
+          name: '灵兽驭师',
+          cost: 9,
+          desc: '与灵兽签订契约，驾驭百兽冲锋。',
+          hook: '契约兽暴走，疑遭邪祟侵蚀，需要净化灵魂枷锁。',
+          locations: ['灵兽栈', '朝云谷', '腾雾盆地', '星辉驯养所', '御风石圈']
+        }
+      ],
+      talents: [
+        { key: 'nine_tail', name: '九尾幻形', cost: 9, desc: '可化九种姿态，魅力与潜行检定+7。', tags: ['幻术', '魅力'] },
+        { key: 'windstep', name: '风羽轻灵', cost: 6, desc: '御风疾行，移动与闪避判定+6。', tags: ['身法'] },
+        { key: 'cloud_heal', name: '云息疗愈', cost: 5, desc: '牺牲自身法力，为队友恢复大量命值。', tags: ['治疗'] },
+        { key: 'mist_walk', name: '雾隐步', cost: 4, desc: '可于雾气中隐身一次，短暂免疫远程打击。', tags: ['潜行'] },
+        { key: 'spirit_sight', name: '灵眸感知', cost: 3, desc: '感应百里内灵力波动，洞察隐藏敌意。', tags: ['洞察'] }
+      ]
+    },
+    {
+      id: 'xiling',
+      name: '西陵灵裔',
+      description: '承载星辉与秘纹的古老氏族，守护着失落的灵塔。',
+      identities: [
+        {
+          key: 'xiling_astrologer',
+          name: '星命占官',
+          cost: 8,
+          desc: '解读星象，为各地诸侯推演命盘。',
+          hook: '星盘出现“逆行之星”，需查明是神迹或灾厄。',
+          locations: ['西陵星台', '斗宿坛城', '星纹密室', '灵潮港', '观星峡']
+        },
+        {
+          key: 'xiling_smith',
+          name: '玄铁铸魂',
+          cost: 7,
+          desc: '掌握熔铸灵兵的技艺，使兵器孕育灵魂。',
+          hook: '玄铁熔城被邪火侵蚀，必须寻回圣火种。',
+          locations: ['玄铁熔城', '赤炎工坊', '灵火矿坑', '锻星坞', '烈焰回廊']
+        },
+        {
+          key: 'xiling_songstress',
+          name: '月霜歌者',
+          cost: 5,
+          desc: '以歌声疗愈灵魂，安抚战后创伤。',
+          hook: '霜影水榭中歌谱残缺，藏着流亡王族的讯息。',
+          locations: ['月霜剧场', '银辉湖畔', '霜影水榭', '月澜广场', '寒鸢驿站']
+        },
+        {
+          key: 'xiling_guardian',
+          name: '断碑守卫',
+          cost: 6,
+          desc: '守护古老断碑与灵塔的忠诚卫士。',
+          hook: '灵塔封印松动，必须阻止异界魔灵突破。',
+          locations: ['断碑要塞', '灵塔禁地', '星门巡廊', '玄甲营地', '寂光坟场']
+        },
+        {
+          key: 'xiling_archivist',
+          name: '失落档司',
+          cost: 9,
+          desc: '管理遗典档案，能追溯千年秘闻。',
+          hook: '光阴走廊的卷轴被盗，线索指向被封印的星门。',
+          locations: ['遗典藏库', '光阴走廊', '虚纹档案室', '古今书林', '离砂浮岛']
+        }
+      ],
+      talents: [
+        { key: 'starlight', name: '星辉护佑', cost: 8, desc: '引星辉护体，法力与防御检定+6。', tags: ['法术护盾'] },
+        { key: 'resonance', name: '灵域共鸣', cost: 6, desc: '与灵塔共鸣，施法速度与范围提升。', tags: ['共鸣'] },
+        { key: 'moon_frost', name: '月白冰魄', cost: 5, desc: '驾驭月霜寒气，造成范围减速。', tags: ['冰霜'] },
+        { key: 'soulforge', name: '铸魂定志', cost: 4, desc: '免疫一次精神控制，稳定意志。', tags: ['心志'] },
+        { key: 'ghostlight', name: '幽灯巡照', cost: 3, desc: '召唤灵灯照明，驱散幻术与妖影。', tags: ['侦测'] }
+      ]
+    }
+  ],
+  spells: [
+    { key: 'taixuan', name: '太玄引气', cost: 3, desc: '凝聚天地灵气，短暂提升命与法上限。', tags: ['增益'] },
+    { key: 'wind_ride', name: '御风履霄', cost: 4, desc: '御风而行，可跨越险峻地形。', tags: ['位移'] },
+    { key: 'flame_heart', name: '炎心炼炁', cost: 4, desc: '激发体内真火，下一次攻击附带灼烧。', tags: ['火焰'] },
+    { key: 'star_shower', name: '星落灵光', cost: 5, desc: '召唤星光坠落，对范围敌人造成法伤。', tags: ['范围'] },
+    { key: 'shadow_bind', name: '影缚咒', cost: 3, desc: '以影子束缚目标，使其暂时定身。', tags: ['控制'] },
+    { key: 'guardian_talisman', name: '山海护符', cost: 2, desc: '布下护符，抵御一次致命伤害。', tags: ['防御'] }
+  ],
+  flaws: [
+    { key: 'old_wound', name: '旧伤难愈', cost: 2, desc: '过去的战创未愈，剧烈运动后需休整。' },
+    { key: 'chaotic_meridian', name: '灵脉紊乱', cost: 3, desc: '偶发灵脉失调，施法有小概率失败。' },
+    { key: 'night_blind', name: '夜盲症', cost: 1, desc: '夜间视力受限，暗处行动难度提升。' },
+    { key: 'poison_scar', name: '毒痕潜伏', cost: 2, desc: '体内残留毒素，持续消耗少量命值。' },
+    { key: 'soul_fracture', name: '魂魄裂痕', cost: 4, desc: '精神被神秘力量撕裂，易受精神攻击影响。' }
+  ],
+  equipment: [
+    { key: 'bronze_sword', name: '赤铜长剑', cost: 3, desc: '锋锐轻巧的长剑，出鞘自带鸣音。', tags: ['武器'] },
+    { key: 'snow_bow', name: '雪羽长弓', cost: 4, desc: '以雪狐筋制弦，远程命中率更高。', tags: ['远程'] },
+    { key: 'iron_fan', name: '玄铁折扇', cost: 2, desc: '兼具兵刃与礼仪，可暗藏机括毒针。', tags: ['暗器'] },
+    { key: 'soul_armor', name: '镇魂铁甲', cost: 5, desc: '铭刻灵纹的甲胄，可抵御法术攻击。', tags: ['防具'] },
+    { key: 'spirit_amulet', name: '灵纹护符', cost: 3, desc: '提供额外法力护罩，增强仙术施展。', tags: ['饰品'] },
+    { key: 'wind_dagger', name: '风行短刃', cost: 2, desc: '轻盈短刃，适合贴身作战与突刺。', tags: ['近战'] }
+  ],
+  items: [
+    { key: 'tiger_token', name: '虎牢遗令', cost: 2, desc: '刻有虎牢兵符印记，可号召边军协助。' },
+    { key: 'spirit_incense', name: '青丘灵香', cost: 3, desc: '点燃后可与灵兽沟通，亦能驱散秽气。' },
+    { key: 'star_compass', name: '星陨罗盘', cost: 4, desc: '追踪星力流向，寻找秘境入口。' },
+    { key: 'onyx_letter', name: '墨玉信笺', cost: 2, desc: '记录密语的黑玉信札，只能由持有者解读。' },
+    { key: 'clockwork_gem', name: '千机巧石', cost: 3, desc: '嵌入机关后可自动破解复杂锁阵。' },
+    { key: 'tide_leaf', name: '玄潮贝叶', cost: 2, desc: '随身携带可抵御一次水系灾厄。' }
+  ]
+};
+
+const state = {
+  totalPoints: 36,
+  raceId: null,
+  identityKey: null,
+  talents: new Set(),
+  spells: new Set(),
+  flaws: new Set(),
+  equipment: new Set(),
+  items: new Set(),
+  eraKey: '',
+  locationKey: '',
+  appearanceId: '',
+  name: '',
+  age: '',
+  genderKey: 'male',
+  custom: {
+    gender: '',
+    appearance: '',
+    era: '',
+    location: ''
+  },
+  lastRoll: [],
+  spent: 0,
+  spentGross: 0,
+  rebate: 0
+};
+
+const dom = {
+  pointsTotal: document.querySelector('[data-role="points-total"]'),
+  pointsSpent: document.querySelector('[data-role="points-spent"]'),
+  pointsRemaining: document.querySelector('[data-role="points-remaining"]'),
+  pointsProgress: document.querySelector('[data-role="points-progress"]'),
+  rollDetail: document.querySelector('[data-role="roll-detail"]'),
+  summaryList: document.querySelector('[data-role="selection-summary"]'),
+  feedback: document.querySelector('[data-role="feedback"]'),
+  nameInput: document.getElementById('name-input'),
+  ageInput: document.getElementById('age-input'),
+  genderSelect: document.getElementById('gender-select'),
+  genderCustomWrap: document.querySelector('[data-role="gender-custom"]'),
+  genderCustomInput: document.getElementById('gender-custom-input'),
+  appearanceGroup: document.querySelector('[data-role="appearance-options"]'),
+  appearanceCustomWrap: document.querySelector('[data-role="appearance-custom"]'),
+  appearanceCustomInput: document.getElementById('appearance-custom'),
+  raceSelect: document.getElementById('race-select'),
+  identityContainer: document.querySelector('[data-options="identity"]'),
+  eraSelect: document.getElementById('era-select'),
+  eraCustomWrap: document.querySelector('[data-role="era-custom"]'),
+  eraCustomInput: document.getElementById('era-custom-input'),
+  locationSelect: document.getElementById('location-select'),
+  locationCustomWrap: document.querySelector('[data-role="location-custom"]'),
+  locationCustomInput: document.getElementById('location-custom-input'),
+  talentContainer: document.querySelector('[data-options="talent"]'),
+  spellContainer: document.querySelector('[data-options="spell"]'),
+  flawContainer: document.querySelector('[data-options="flaw"]'),
+  equipmentContainer: document.querySelector('[data-options="equipment"]'),
+  itemContainer: document.querySelector('[data-options="item"]'),
+  backgroundButton: document.getElementById('generate-background'),
+  backgroundOutput: document.getElementById('background-output'),
+  startButton: document.getElementById('start-button'),
+  startSummary: document.querySelector('[data-role="start-summary"]'),
+  rollButton: document.getElementById('roll-button')
+};
+
+let feedbackTimer;
+
+function currentRace() {
+  return DATA.races.find((race) => race.id === state.raceId) || null;
+}
+
+function findByKey(collection, key) {
+  return collection.find((item) => item.key === key) || null;
+}
+
+function formatOptionCost(type, cost) {
+  if (type === 'flaw') {
+    return `返还 ${cost} 点`;
+  }
+  return `消耗 ${cost} 点`;
+}
+
+function getPointLedger(net = state.spent) {
+  const gross = state.spentGross || 0;
+  const bonus = state.rebate || 0;
+  const total = state.totalPoints + bonus;
+  const spent = Math.min(gross, total);
+  const remaining = Math.max(total - spent, 0);
+  return { net, spent, bonus, total, remaining, gross };
+}
+
+function renderGenderOptions() {
+  dom.genderSelect.innerHTML = '';
+  DATA.genders.forEach((option) => {
+    const opt = document.createElement('option');
+    opt.value = option.key;
+    opt.textContent = option.label;
+    dom.genderSelect.appendChild(opt);
+  });
+  dom.genderSelect.value = state.genderKey;
+  toggleCustomGender(state.genderKey === 'custom');
+}
+
+function renderRaceOptions() {
+  dom.raceSelect.innerHTML = '';
+  DATA.races.forEach((race) => {
+    const option = document.createElement('option');
+    option.value = race.id;
+    option.textContent = `${race.name}｜${race.description}`;
+    dom.raceSelect.appendChild(option);
+  });
+}
+
+function renderEraOptions() {
+  dom.eraSelect.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = '请选择初始时间';
+  dom.eraSelect.appendChild(placeholder);
+  DATA.eras.forEach((era) => {
+    const option = document.createElement('option');
+    option.value = era.id;
+    option.textContent = era.label;
+    option.dataset.detail = era.detail;
+    dom.eraSelect.appendChild(option);
+  });
+  const custom = document.createElement('option');
+  custom.value = 'custom';
+  custom.textContent = '自定义时间';
+  dom.eraSelect.appendChild(custom);
+}
+
+function renderAppearanceOptions() {
+  const group = dom.appearanceGroup;
+  group.innerHTML = '';
+  const radios = [];
+
+  DATA.appearances.forEach((appearance, index) => {
+    const label = document.createElement('label');
+    label.className = 'chip';
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'appearance';
+    input.value = appearance.id;
+    if (state.appearanceId) {
+      input.checked = state.appearanceId === appearance.id;
+    } else if (index === 0) {
+      input.checked = true;
+      state.appearanceId = appearance.id;
+    }
+    label.appendChild(input);
+    label.append(appearance.label);
+    group.appendChild(label);
+    radios.push({ label, input });
+  });
+
+  const customLabel = document.createElement('label');
+  customLabel.className = 'chip';
+  const customInput = document.createElement('input');
+  customInput.type = 'radio';
+  customInput.name = 'appearance';
+  customInput.value = 'custom';
+  customInput.checked = state.appearanceId === 'custom';
+  customLabel.appendChild(customInput);
+  customLabel.append('自定义');
+  group.appendChild(customLabel);
+  radios.push({ label: customLabel, input: customInput });
+
+  function updateAppearanceActive() {
+    radios.forEach(({ label, input }) => {
+      label.classList.toggle('is-active', input.checked);
+    });
+    const show = customInput.checked;
+    dom.appearanceCustomWrap.classList.toggle('hidden', !show);
+    if (!show && state.appearanceId === 'custom') {
+      state.custom.appearance = dom.appearanceCustomInput.value.trim();
+    }
+  }
+
+  radios.forEach(({ input }) => {
+    input.addEventListener('change', (event) => {
+      state.appearanceId = event.target.value;
+      updateAppearanceActive();
+    });
+  });
+
+  updateAppearanceActive();
+}
+
+function buildOptionCard(option, type, inputType, groupName) {
+  const label = document.createElement('label');
+  label.className = 'option-card';
+  if (type === 'flaw') {
+    label.classList.add('option-card--gain');
+  }
+
+  const input = document.createElement('input');
+  input.type = inputType;
+  input.value = option.key;
+  if (groupName) {
+    input.name = groupName;
+  }
+  label.appendChild(input);
+
+  const shell = document.createElement('div');
+  shell.className = 'option-shell';
+
+  const header = document.createElement('div');
+  header.className = 'option-shell__header';
+  const name = document.createElement('span');
+  name.className = 'option-name';
+  name.textContent = option.name;
+  const cost = document.createElement('span');
+  cost.className = 'option-cost';
+  cost.textContent = formatOptionCost(type, option.cost);
+  header.append(name, cost);
+  shell.appendChild(header);
+
+  if (option.desc) {
+    const desc = document.createElement('p');
+    desc.className = 'option-desc';
+    desc.textContent = option.desc;
+    shell.appendChild(desc);
+  }
+
+  if (type === 'identity' && Array.isArray(option.locations)) {
+    const hint = document.createElement('div');
+    hint.className = 'option-tags';
+    hint.textContent = `起始地点示例：${option.locations.slice(0, 3).join('、')}`;
+    shell.appendChild(hint);
+  } else if (Array.isArray(option.tags) && option.tags.length > 0) {
+    const tags = document.createElement('div');
+    tags.className = 'option-tags';
+    option.tags.forEach((tag) => {
+      const span = document.createElement('span');
+      span.className = 'option-tag';
+      span.textContent = tag;
+      tags.appendChild(span);
+    });
+    shell.appendChild(tags);
+  }
+
+  label.appendChild(shell);
+
+  return { label, input };
+}
+
+function renderIdentityOptions(race) {
+  dom.identityContainer.innerHTML = '';
+  if (!race) {
+    return;
+  }
+
+  race.identities.forEach((identity) => {
+    const { label, input } = buildOptionCard(identity, 'identity', 'radio', 'identity');
+    input.checked = state.identityKey === identity.key;
+    input.addEventListener('change', () => {
+      const previous = state.identityKey;
+      state.identityKey = identity.key;
+      state.locationKey = '';
+      state.custom.location = '';
+      const spent = calculateSpent();
+      if (spent > state.totalPoints) {
+        state.identityKey = previous;
+        input.checked = false;
+        if (previous) {
+          const previousInput = dom.identityContainer.querySelector(`input[value="${previous}"]`);
+          if (previousInput) {
+            previousInput.checked = true;
+          }
+        }
+        showFeedback('天命点不足，无法选择该身份。');
+        renderLocationOptions(previous ? findByKey(race.identities, previous) : null);
+        updatePointsDisplay();
+        return;
+      }
+      renderLocationOptions(identity);
+      updatePointsDisplay();
+    });
+    dom.identityContainer.appendChild(label);
+  });
+}
+
+function renderTalentOptions(race) {
+  dom.talentContainer.innerHTML = '';
+  if (!race) {
+    return;
+  }
+  race.talents.forEach((talent) => {
+    const { label, input } = buildOptionCard(talent, 'talent', 'checkbox');
+    input.checked = state.talents.has(talent.key);
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        state.talents.add(talent.key);
+        if (calculateSpent() > state.totalPoints) {
+          state.talents.delete(talent.key);
+          input.checked = false;
+          showFeedback('天命点不足，无法选择该天赋。');
+        }
+      } else {
+        state.talents.delete(talent.key);
+      }
+      updatePointsDisplay();
+    });
+    dom.talentContainer.appendChild(label);
+  });
+}
+
+function renderGeneralOptions(container, options, stateSet, type) {
+  container.innerHTML = '';
+  options.forEach((option) => {
+    const { label, input } = buildOptionCard(option, type, 'checkbox');
+    input.checked = stateSet.has(option.key);
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        stateSet.add(option.key);
+        if (calculateSpent() > state.totalPoints) {
+          stateSet.delete(option.key);
+          input.checked = false;
+          showFeedback('天命点不足，无法选择该选项。');
+        } else if (type === 'flaw') {
+          showFeedback('刻画缺陷，为天命换取余裕。', 'success');
+        }
+      } else {
+        stateSet.delete(option.key);
+        if (type === 'flaw') {
+          showFeedback('已移除缺陷，天命点恢复原状。', 'success');
+        }
+      }
+      updatePointsDisplay();
+    });
+    container.appendChild(label);
+  });
+}
+
+function renderLocationOptions(identity) {
+  dom.locationSelect.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = identity ? '请选择出生地' : '请先选择身份';
+  placeholder.disabled = true;
+  if (!state.locationKey) {
+    placeholder.selected = true;
+  }
+  dom.locationSelect.appendChild(placeholder);
+
+  if (!identity) {
+    dom.locationCustomWrap.classList.add('hidden');
+    dom.locationCustomInput.value = '';
+    return;
+  }
+
+  identity.locations.forEach((loc) => {
+    const option = document.createElement('option');
+    option.value = loc;
+    option.textContent = loc;
+    dom.locationSelect.appendChild(option);
+  });
+
+  const custom = document.createElement('option');
+  custom.value = 'custom';
+  custom.textContent = '自定义地点';
+  dom.locationSelect.appendChild(custom);
+
+  if (state.locationKey === 'custom') {
+    dom.locationSelect.value = 'custom';
+    dom.locationCustomWrap.classList.remove('hidden');
+    dom.locationCustomInput.value = state.custom.location;
+  } else if (identity.locations.includes(state.locationKey)) {
+    dom.locationSelect.value = state.locationKey;
+    dom.locationCustomWrap.classList.add('hidden');
+    dom.locationCustomInput.value = '';
+  } else {
+    dom.locationSelect.value = '';
+    dom.locationCustomWrap.classList.add('hidden');
+    dom.locationCustomInput.value = '';
+  }
+}
+
+function toggleCustomGender(show) {
+  dom.genderCustomWrap.classList.toggle('hidden', !show);
+  if (!show) {
+    state.custom.gender = '';
+    dom.genderCustomInput.value = '';
+  }
+}
+
+function rollDestinyPoints() {
+  const base = 24;
+  const rolls = Array.from({ length: 3 }, () => Math.floor(Math.random() * 6) + 1);
+  const total = base + rolls.reduce((sum, value) => sum + value, 0);
+  state.totalPoints = total;
+  state.lastRoll = rolls;
+  dom.rollDetail.textContent = `基础 ${base} 点 + 骰值 ${rolls.join(' + ')} = ${total} 点`;
+  updatePointsDisplay();
+  showFeedback(`掷骰成功，获得 ${total} 点天命！`, 'success');
+}
+
+function calculateSpent() {
+  let gross = 0;
+  let rebate = 0;
+  const race = currentRace();
+  if (race && state.identityKey) {
+    const identity = findByKey(race.identities, state.identityKey);
+    if (identity) {
+      gross += identity.cost;
+    }
+  }
+
+  if (race) {
+    state.talents.forEach((key) => {
+      const talent = findByKey(race.talents, key);
+      if (talent) {
+        gross += talent.cost;
+      }
+    });
+  }
+
+  state.spells.forEach((key) => {
+    const spell = findByKey(DATA.spells, key);
+    if (spell) {
+      gross += spell.cost;
+    }
+  });
+
+  state.flaws.forEach((key) => {
+    const flaw = findByKey(DATA.flaws, key);
+    if (flaw) {
+      rebate += flaw.cost;
+    }
+  });
+
+  state.equipment.forEach((key) => {
+    const eq = findByKey(DATA.equipment, key);
+    if (eq) {
+      gross += eq.cost;
+    }
+  });
+
+  state.items.forEach((key) => {
+    const item = findByKey(DATA.items, key);
+    if (item) {
+      gross += item.cost;
+    }
+  });
+
+  state.spentGross = gross;
+  state.rebate = rebate;
+  return gross - rebate;
+}
+
+function renderSummary() {
+  const entries = [];
+  const race = currentRace();
+
+  if (race && state.identityKey) {
+    const identity = findByKey(race.identities, state.identityKey);
+    if (identity) {
+      entries.push({ label: `身份 · ${identity.name}`, amount: identity.cost });
+    }
+  }
+
+  if (race) {
+    state.talents.forEach((key) => {
+      const talent = findByKey(race.talents, key);
+      if (talent) {
+        entries.push({ label: `天赋 · ${talent.name}`, amount: talent.cost });
+      }
+    });
+  }
+
+  state.spells.forEach((key) => {
+    const spell = findByKey(DATA.spells, key);
+    if (spell) {
+      entries.push({ label: `仙术 · ${spell.name}`, amount: spell.cost });
+    }
+  });
+
+  state.flaws.forEach((key) => {
+    const flaw = findByKey(DATA.flaws, key);
+    if (flaw) {
+      entries.push({ label: `缺陷 · ${flaw.name}`, amount: -flaw.cost });
+    }
+  });
+
+  state.equipment.forEach((key) => {
+    const eq = findByKey(DATA.equipment, key);
+    if (eq) {
+      entries.push({ label: `装备 · ${eq.name}`, amount: eq.cost });
+    }
+  });
+
+  state.items.forEach((key) => {
+    const item = findByKey(DATA.items, key);
+    if (item) {
+      entries.push({ label: `物品 · ${item.name}`, amount: item.cost });
+    }
+  });
+
+  dom.summaryList.innerHTML = '';
+  if (entries.length === 0) {
+    const empty = document.createElement('li');
+    empty.className = 'summary__empty';
+    empty.textContent = '尚未选择消耗天命点的项目。';
+    dom.summaryList.appendChild(empty);
+    return;
+  }
+
+  entries.forEach((entry) => {
+    const item = document.createElement('li');
+    item.className = 'summary__item';
+    const name = document.createElement('span');
+    name.textContent = entry.label;
+    const cost = document.createElement('span');
+    const amount = entry.amount;
+    const prefix = amount <= 0 ? '+' : '-';
+    cost.className = 'summary__cost';
+    cost.classList.add(amount <= 0 ? 'summary__cost--gain' : 'summary__cost--spent');
+    cost.textContent = `${prefix}${Math.abs(amount)} 点`;
+    item.append(name, cost);
+    dom.summaryList.appendChild(item);
+  });
+}
+
+function updatePointsDisplay() {
+  state.spent = calculateSpent();
+  const ledger = getPointLedger();
+  dom.pointsTotal.textContent = String(ledger.total);
+  dom.pointsSpent.textContent = String(ledger.spent);
+  dom.pointsRemaining.textContent = String(ledger.remaining);
+  if (dom.pointsProgress) {
+    dom.pointsProgress.max = Math.max(ledger.total, 1);
+    dom.pointsProgress.value = Math.min(ledger.spent, ledger.total);
+  }
+  renderSummary();
+}
+
+function showFeedback(message, tone = 'error') {
+  if (!dom.feedback) {
+    return;
+  }
+  dom.feedback.textContent = message;
+  dom.feedback.classList.add('is-visible');
+  dom.feedback.style.borderColor = tone === 'success' ? 'rgba(43, 122, 88, 0.45)' : 'rgba(181, 75, 59, 0.35)';
+  dom.feedback.style.color = tone === 'success' ? '#1d5a40' : '#b54b3b';
+  dom.feedback.style.backgroundColor = tone === 'success' ? 'rgba(43, 122, 88, 0.12)' : 'rgba(181, 75, 59, 0.08)';
+  clearTimeout(feedbackTimer);
+  feedbackTimer = setTimeout(() => {
+    dom.feedback.classList.remove('is-visible');
+  }, 2600);
+}
+
+function getGenderLabel() {
+  if (state.genderKey === 'custom') {
+    return state.custom.gender || '未名之性';
+  }
+  const gender = DATA.genders.find((item) => item.key === state.genderKey);
+  return gender ? gender.label : '不详';
+}
+
+function getEraLabel() {
+  if (state.eraKey === 'custom') {
+    return state.custom.era.trim();
+  }
+  const era = DATA.eras.find((item) => item.id === state.eraKey);
+  return era ? era.label : '';
+}
+
+function getLocationLabel() {
+  if (state.locationKey === 'custom') {
+    return state.custom.location.trim();
+  }
+  return state.locationKey || '';
+}
+
+function getAppearanceLabel() {
+  if (state.appearanceId === 'custom') {
+    return state.custom.appearance.trim() || '自定义外貌未填';
+  }
+  const appearance = DATA.appearances.find((item) => item.id === state.appearanceId);
+  return appearance ? appearance.label : '未描述外貌';
+}
+
+function getSelectedListFromSet(set, source) {
+  const list = [];
+  set.forEach((key) => {
+    const item = findByKey(source, key);
+    if (item) {
+      list.push(item.name);
+    }
+  });
+  return list;
+}
+
+function generateBackground() {
+  const name = (dom.nameInput.value || '').trim() || '无名旅人';
+  const age = (dom.ageInput.value || '').trim();
+  state.name = name;
+  state.age = age;
+  const gender = getGenderLabel();
+  const race = currentRace();
+  const identity = race ? findByKey(race.identities, state.identityKey) : null;
+  const time = getEraLabel() || '未定时序';
+  const location = getLocationLabel() || '未知之地';
+  const appearance = getAppearanceLabel();
+
+  const talentNames = race ? getSelectedListFromSet(state.talents, race.talents) : [];
+  const spellNames = getSelectedListFromSet(state.spells, DATA.spells);
+  const flawNames = getSelectedListFromSet(state.flaws, DATA.flaws);
+  const equipmentNames = getSelectedListFromSet(state.equipment, DATA.equipment);
+  const itemNames = getSelectedListFromSet(state.items, DATA.items);
+  const ledger = getPointLedger();
+  const bonusNote = ledger.bonus > 0 ? `（基础 ${state.totalPoints} 点，缺陷返还 ${ledger.bonus} 点）` : '';
+
+  const lines = [];
+  lines.push(`【${time} · ${location}】`);
+  const identityPhrase = identity ? `${race?.name ?? ''}${identity.name}` : `${race?.name ?? '未知族裔'}的旅人`;
+  const agePart = age ? `${age}岁` : '年岁未详';
+  lines.push(`${name}（${gender}，${agePart}），${identityPhrase}。外貌描绘：${appearance}。`);
+  lines.push(`天命点共 ${ledger.total} 点${bonusNote}，已投入 ${ledger.spent} 点，仍余 ${ledger.remaining} 点以备后续奇遇。`);
+  if (talentNames.length > 0) {
+    lines.push(`觉醒天赋：${talentNames.join('、')}。`);
+  } else {
+    lines.push('尚未觉醒额外天赋，等待命运唤醒潜能。');
+  }
+  if (spellNames.length > 0) {
+    lines.push(`修习仙术：${spellNames.join('、')}。`);
+  } else {
+    lines.push('暂未修习仙术，需要在旅途中寻找良师。');
+  }
+  if (flawNames.length > 0) {
+    lines.push(`宿命缺陷：${flawNames.join('、')}。`);
+  } else {
+    lines.push('暂未刻画明显缺陷，可考虑补足宿命的代价。');
+  }
+  lines.push(`随身装备：${equipmentNames.length > 0 ? equipmentNames.join('、') : '尚无主武'}。`);
+  lines.push(`携行奇物：${itemNames.length > 0 ? itemNames.join('、') : '暂未携带特殊道具'}。`);
+  if (identity && identity.hook) {
+    lines.push(`宿命牵引：${identity.hook}`);
+  }
+
+  dom.backgroundOutput.value = lines.join('\n\n');
+}
+
+function buildStartSummary() {
+  const summary = [];
+  const race = currentRace();
+  if (!race || !state.identityKey) {
+    summary.push('尚未确定角色身份。');
+  }
+  if (!getEraLabel()) {
+    summary.push('需要设定初始时间。');
+  }
+  if (!getLocationLabel()) {
+    summary.push('需要设定初始地点。');
+  }
+  if (!dom.backgroundOutput.value.trim()) {
+    summary.push('尚未生成或填写背景故事。');
+  }
+
+  const ledger = getPointLedger();
+  if (ledger.remaining < 0) {
+    summary.push('天命点分配超出上限。');
+  }
+
+  dom.startSummary.innerHTML = '';
+
+  if (summary.length > 0) {
+    const message = document.createElement('div');
+    message.className = 'start-message error';
+    const title = document.createElement('strong');
+    title.textContent = '请完善以下内容：';
+    const list = document.createElement('ul');
+    list.className = 'list-inline';
+    summary.forEach((text) => {
+      const item = document.createElement('li');
+      item.textContent = text;
+      list.appendChild(item);
+    });
+    message.append(title, list);
+    dom.startSummary.appendChild(message);
+    showFeedback('仍有未完成的设定，稍作调整吧。');
+    return;
+  }
+
+  const success = document.createElement('div');
+  success.className = 'start-message success';
+  const selectedRace = currentRace();
+  const identity = selectedRace ? findByKey(selectedRace.identities, state.identityKey) : null;
+  const info = [
+    `身份：${identity ? identity.name : '未定义'}`,
+    `时间：${getEraLabel()}`,
+    `地点：${getLocationLabel()}`,
+    `天命点剩余：${ledger.remaining}`
+  ];
+  success.innerHTML = `<strong>天命已定，可启程！</strong>`;
+  const list = document.createElement('ul');
+  list.className = 'list-inline';
+  info.forEach((text) => {
+    const item = document.createElement('li');
+    item.textContent = text;
+    list.appendChild(item);
+  });
+  success.appendChild(list);
+  dom.startSummary.appendChild(success);
+  showFeedback('天命规划完成，祝旅途顺遂！', 'success');
+}
+
+function attachEventListeners() {
+  dom.genderSelect.addEventListener('change', (event) => {
+    state.genderKey = event.target.value;
+    toggleCustomGender(state.genderKey === 'custom');
+  });
+
+  dom.genderCustomInput.addEventListener('input', (event) => {
+    state.custom.gender = event.target.value.trim();
+  });
+
+  dom.appearanceCustomInput.addEventListener('input', (event) => {
+    state.custom.appearance = event.target.value;
+  });
+
+  dom.raceSelect.addEventListener('change', (event) => {
+    setRace(event.target.value);
+  });
+
+  dom.eraSelect.addEventListener('change', (event) => {
+    const value = event.target.value;
+    state.eraKey = value;
+    if (value === 'custom') {
+      dom.eraCustomWrap.classList.remove('hidden');
+    } else {
+      dom.eraCustomWrap.classList.add('hidden');
+      dom.eraCustomInput.value = '';
+      state.custom.era = '';
+    }
+  });
+
+  dom.eraCustomInput.addEventListener('input', (event) => {
+    state.custom.era = event.target.value;
+    state.eraKey = 'custom';
+  });
+
+  dom.locationSelect.addEventListener('change', (event) => {
+    const value = event.target.value;
+    if (value === 'custom') {
+      state.locationKey = 'custom';
+      dom.locationCustomWrap.classList.remove('hidden');
+    } else {
+      state.locationKey = value;
+      dom.locationCustomWrap.classList.add('hidden');
+      dom.locationCustomInput.value = '';
+      state.custom.location = '';
+    }
+  });
+
+  dom.locationCustomInput.addEventListener('input', (event) => {
+    state.custom.location = event.target.value;
+    state.locationKey = 'custom';
+  });
+
+  dom.nameInput.addEventListener('input', (event) => {
+    state.name = event.target.value;
+  });
+
+  dom.ageInput.addEventListener('input', (event) => {
+    state.age = event.target.value;
+  });
+
+  dom.backgroundButton.addEventListener('click', generateBackground);
+  dom.startButton.addEventListener('click', buildStartSummary);
+  dom.rollButton.addEventListener('click', rollDestinyPoints);
+}
+
+function setupCollapsibles() {
+  const sections = document.querySelectorAll('[data-collapsible]');
+  const shouldPrefold = window.matchMedia('(max-width: 900px)').matches;
+
+  sections.forEach((section) => {
+    const toggle = section.querySelector('.collapse-toggle');
+    const content = section.querySelector('.option-section__content');
+    if (!toggle || !content) {
+      return;
+    }
+
+    function setCollapsed(collapsed) {
+      section.classList.toggle('is-collapsed', collapsed);
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+      content.hidden = collapsed;
+    }
+
+    const defaultCollapsed = section.dataset.defaultCollapsed === 'true';
+    setCollapsed(defaultCollapsed || shouldPrefold);
+
+    toggle.addEventListener('click', () => {
+      const collapsed = section.classList.contains('is-collapsed');
+      setCollapsed(!collapsed);
+    });
+  });
+}
+
+function setRace(raceId) {
+  state.raceId = raceId;
+  state.identityKey = null;
+  state.talents.clear();
+  state.locationKey = '';
+  state.custom.location = '';
+  const race = currentRace();
+  renderIdentityOptions(race);
+  renderTalentOptions(race);
+  renderLocationOptions(null);
+  updatePointsDisplay();
+}
+
+function init() {
+  renderGenderOptions();
+  renderRaceOptions();
+  renderEraOptions();
+  renderAppearanceOptions();
+  renderGeneralOptions(dom.spellContainer, DATA.spells, state.spells, 'spell');
+  renderGeneralOptions(dom.flawContainer, DATA.flaws, state.flaws, 'flaw');
+  renderGeneralOptions(dom.equipmentContainer, DATA.equipment, state.equipment, 'equipment');
+  renderGeneralOptions(dom.itemContainer, DATA.items, state.items, 'item');
+  attachEventListeners();
+  setupCollapsibles();
+
+  if (DATA.races[0]) {
+    dom.raceSelect.value = DATA.races[0].id;
+    setRace(DATA.races[0].id);
+  }
+
+  updatePointsDisplay();
+}
+
+init();
+
+</script>
   </body>
 </html>
