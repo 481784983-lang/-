@@ -3,23 +3,188 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>无双志 · 状态栏骨架预览</title>
+    <title>无双志 · 天命起源构筑台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/index.css" />
   </head>
   <body>
-    <main class="preview">
-      <h1>无双志 · 状态栏骨架</h1>
-      <p>
-        右上角浮窗为 SillyTavern 扩展状态栏的最新素雅长卷。牛皮纸底纹、金色题头、线描图标与各板块题记均已在脚本中同步，
-        正式扩展将自动植入相同的界面细节。
-      </p>
-      <p class="hint">可在浏览器窗口中滚动查看骨架各分组，留意圆形金箔图标与“乾坤之象”等题签的排布韵味。</p>
-      <p class="hint">提示：点击“主角”“行囊”“结缘录”“天下闻”标题可折叠或展开详细条目。</p>
-    </main>
+    <div class="app">
+      <header class="masthead">
+        <div class="masthead__badge">无双志</div>
+        <div>
+          <h1>天命起源构筑台</h1>
+          <p>
+            根据骨架提示为角色规划身份、天赋与行囊。掷动天命点后，在规约内挑选最佳组合，生成独属于你的史诗开端。
+          </p>
+        </div>
+      </header>
 
-    <script>
-      window.TavernHelper = window.TavernHelper || {};
-    </script>
+      <section class="card destiny" aria-labelledby="destiny-heading">
+        <div class="destiny__header">
+          <div>
+            <h2 id="destiny-heading">天命点</h2>
+            <p class="destiny__sub">掷骰决定起点，所有选项均需消耗相应天命点。</p>
+          </div>
+          <button class="btn" id="roll-button" type="button">掷天命骰</button>
+        </div>
+
+        <div class="destiny__scoreboard">
+          <div class="scoreboard__item">
+            <span class="scoreboard__label">总额</span>
+            <span class="scoreboard__value" data-role="points-total">36</span>
+          </div>
+          <div class="scoreboard__item">
+            <span class="scoreboard__label">已用</span>
+            <span class="scoreboard__value" data-role="points-spent">0</span>
+          </div>
+          <div class="scoreboard__item">
+            <span class="scoreboard__label">剩余</span>
+            <span class="scoreboard__value" data-role="points-remaining">36</span>
+          </div>
+        </div>
+
+        <progress class="destiny__progress" max="60" value="0" data-role="points-progress"></progress>
+        <p class="destiny__dice" data-role="roll-detail">默认基础 24 点 + 3d6 骰值</p>
+
+        <div class="summary">
+          <h3>消耗明细</h3>
+          <ul class="summary__list" data-role="selection-summary">
+            <li class="summary__empty">尚未选择消耗天命点的项目。</li>
+          </ul>
+        </div>
+
+        <div class="toast" role="status" aria-live="polite" data-role="feedback"></div>
+      </section>
+
+      <div class="layout">
+        <section class="card" aria-labelledby="character-heading">
+          <h2 id="character-heading">角色设定</h2>
+          <div class="field-grid">
+            <label class="field">
+              <span>姓名</span>
+              <input id="name-input" type="text" placeholder="请输入角色姓名" />
+            </label>
+            <label class="field">
+              <span>年龄</span>
+              <input id="age-input" type="number" min="12" max="120" placeholder="例如：21" />
+            </label>
+            <label class="field">
+              <span>性别</span>
+              <select id="gender-select"></select>
+              <div class="custom-input hidden" data-role="gender-custom">
+                <input type="text" id="gender-custom-input" placeholder="输入自定义性别称谓" />
+              </div>
+            </label>
+          </div>
+
+          <div class="field">
+            <span class="field__label">外貌</span>
+            <div class="chip-group" data-role="appearance-options"></div>
+            <div class="custom-input hidden" data-role="appearance-custom">
+              <input type="text" id="appearance-custom" placeholder="输入自定义外貌描述" />
+            </div>
+          </div>
+
+          <label class="field">
+            <span>种族</span>
+            <select id="race-select"></select>
+          </label>
+
+          <div class="field">
+            <span class="field__label">身份</span>
+            <p class="field__hint">不同种族拥有独特身份，每项均会消耗不同天命点。</p>
+            <div class="option-grid" data-options="identity"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="world-heading">
+          <h2 id="world-heading">世界设定</h2>
+          <p class="field__hint">初始时间与地点会影响后续故事走向，可自定义。</p>
+          <label class="field">
+            <span>初始时间</span>
+            <select id="era-select"></select>
+          </label>
+          <div class="custom-input hidden" data-role="era-custom">
+            <input type="text" id="era-custom-input" placeholder="输入自定义年代，如：光和七年" />
+          </div>
+
+          <label class="field">
+            <span>初始地点</span>
+            <select id="location-select"></select>
+          </label>
+          <div class="custom-input hidden" data-role="location-custom">
+            <input type="text" id="location-custom-input" placeholder="输入自定义地点，如：虎牢关·关楼" />
+          </div>
+          <p class="field__hint">选定身份后将出现对应的出生地选项。</p>
+        </section>
+
+        <section class="card" aria-labelledby="talent-heading">
+          <h2 id="talent-heading">天赋与缺陷</h2>
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>天赋</h3>
+              <p>根据种族觉醒专属天赋。每项均需投入天命点。</p>
+            </header>
+            <div class="option-grid" data-options="talent"></div>
+          </div>
+
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>基础仙术</h3>
+              <p>可从基础法术中挑选入门能力，用于战斗与探索。</p>
+            </header>
+            <div class="option-grid" data-options="spell"></div>
+          </div>
+
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>缺陷</h3>
+              <p>选择身体或灵魂的缺陷，亦需要天命点来诠释宿命羁绊。</p>
+            </header>
+            <div class="option-grid" data-options="flaw"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="pack-heading">
+          <h2 id="pack-heading">行囊</h2>
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>装备</h3>
+              <p>从武器、防具与饰品中挑选起始装备。</p>
+            </header>
+            <div class="option-grid" data-options="equipment"></div>
+          </div>
+
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>特殊物品</h3>
+              <p>可携带至少五件特殊任务道具，增添剧情线索。</p>
+            </header>
+            <div class="option-grid" data-options="item"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="story-heading">
+          <h2 id="story-heading">初始背景故事</h2>
+          <p class="field__hint">根据所选年代、种族与身份生成背景剧本，可在下方自定义补充。</p>
+          <button class="btn btn--secondary" id="generate-background" type="button">生成背景剧本</button>
+          <textarea id="background-output" rows="10" placeholder="点击上方按钮自动生成，亦可直接编写。"></textarea>
+        </section>
+
+        <section class="card start-card" aria-labelledby="start-heading">
+          <h2 id="start-heading">开始</h2>
+          <p class="field__hint">确认所有设定后，即可携带天命踏上征途。</p>
+          <button class="btn btn--primary" id="start-button" type="button">准备开局</button>
+          <div class="start-summary" data-role="start-summary"></div>
+        </section>
+      </div>
+    </div>
+
     <script type="module" src="./assets/index.js"></script>
   </body>
 </html>

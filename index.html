@@ -1,165 +1,190 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>无双志 · 状态栏骨架预览</title><script type="module">var t={224:()=>{const t={董妵:'https://i.postimg.cc/YC8GLSM9/1762118116092.png',貂蝉:'https://i.postimg.cc/YC8GLSM0/1762118371125.png',夏侯惇:'https://i.postimg.cc/3wRyXHx7/1762119173735.png',孙策:'https://i.postimg.cc/LsXqtM8J/1762119880166.png',周瑜:'https://i.postimg.cc/9fM4djQw/1762119922194.png',孙姈:'https://i.postimg.cc/1ztgGZ3D/1762120081011.png',陆焰:'https://i.postimg.cc/SKsX6pxr/1762120196379.png',袁绍:'https://i.postimg.cc/QMyFSnFk/1762120290777.png',曹婥:'https://i.postimg.cc/rwg0RpMq/IMG-20251103-051232.png',吕凤仙:'https://i.postimg.cc/FKBYGnYG/IMG-20251103-055725.png',张娇:'https://i.postimg.cc/FKBYGnYC/IMG-20251103-055745.png',刘蓓:'https://i.postimg.cc/yNbDnrDb/IMG-20251103-055801.png',关云:'https://i.postimg.cc/W4HdSfDV/IMG-20251103-055815.png',张绯:'https://i.postimg.cc/W4HdSfDj/IMG-20251103-055827.png',赵云:'https://i.postimg.cc/SsYJP793/IMG-20251103-055845.png',诸葛亮:'https://i.postimg.cc/RFJNYQfx/IMG-20251103-055911.png',许褚:'https://i.postimg.cc/FRk76gcN/IMG-20251103-055937.png',郭嘉:'https://i.postimg.cc/j5nL1QNs/IMG-20251103-055948.png',荀彧:'https://i.postimg.cc/d1ZLfmds/IMG-20251103-060004.png',于吉:'https://i.postimg.cc/x8rcVJyT/IMG-20251103-060043.png',南华:'https://i.postimg.cc/qqfzHhX7/IMG-20251103-060052.png',左慈:'https://i.postimg.cc/d3MLckm1/IMG-20251103-060103.png',默认:'https://i.postimg.cc/52BdWZVT/default.png'},e=JSON.parse(String.raw`{
-  "世界" : {
-    "时间" : [
-      "",
-      "当前的游戏内日期。随剧情推进更新，格式为：XXN年 (公元 YYYY年)。请AI根据剧情（如战斗、旅行）合理推进时间。" 
-    ],
-    "地点" : [
-      "",
-      "主角<user>当前所在的具体地点。e.g., 洛阳->虎牢关" 
-    ]
-  },
-  "主角" : {
-    "势力" : [
-      "群雄" ,
-      "【UI主题核心】主角<user>当前所属势力。UI将根据此值自动切换主题 ('群雄', '炎汉', '魏', '吴')。"
-    ],
-    "声望" : [
-      "无名之辈" ,
-      "主角<user>在天下的声望等级。随重大事件更新。e.g., 无名之辈 -> 崭露TP角 -> 威震一方 -> 天下闻名 -> 人道魁首"
-    ],
-    "命" : [
-      1000,
-      "【最大生命值】。AI应根据'武力'、'血脉'等进行设定。" 
-    ],
-    "法" : [
-      1000,
-      "【最大法力值】。AI应根据'谋略'、'血脉'等进行设定。" 
-    ],
-    "武力" : [
-      0,
-      "[1-100]，主角<user>的武力值。随锻炼、奇遇或血脉觉醒更新。" 
-    ],
-    "谋略" : [
-      0,
-      "[1-100]，主角<user>的谋略值。随学习或经历更新。" 
-    ],
-    "魅力" : [
-      0,
-      "[1-100]，主角<user>的魅力值。随事迹或血脉觉醒更新。" 
-    ],
-    "官职" : [
-      "无" ,
-      "主角的官职，由汉室(曹婥)册封，影响声望和权限。" 
-    ],
-    "血脉" : [
-      "凡人" ,
-      "主角觉醒的血脉。e.g., 凡人, 亚龙血脉, 魔裔。"
-    ],
-    "仙术" : [
-      {
-        "$meta" : {
-          "extensible" : true ,
-          "template" : {
-            "名称" : ["新仙术" , "【类型】" ],
-            "类型" : ["未知" , "e.g., 奇门, 符咒, 召唤"],
-            "消耗" : ["法力 0" , "发动消耗" ],
-            "描述" : ["暂无描述。" , ""]
-          }
-        }
-      },
-      "主角学会的仙术/奇门。" 
-    ]
-  },
-  "行囊" : {
-    "装备" : {
-      "武器" : ["无" , "当前装备的武器。" ],
-      "防具" : ["无" , "当前装备的防具。" ],
-      "饰品" : ["无" , "当前装备的饰品。" ]
-    },
-    "背包" : [
-      {
-        "$meta" : {
-          "extensible" : true ,
-          "template" : {
-            "名称" : ["新物品" , "【消耗品】" ],
-            "数量" : [1, "描述：..." ],
-            "描述" : ["暂无描述。" , ""]
-          }
-        }
-      },
-      "存放消耗品、材料、任务道具。" 
-    ]
-  },
-  "关系表" : [
-    { "$meta" : { "extensible" : true  } },
-    "一个对象，用于【快速查阅】<user>已建立的【特殊羁绊】。键是人名(snake_case)，值是关系。AI应在'结缘录.xxx.当前关系'更新为'至交'、'妻子'、'宿敌'等特殊关系时，【同步】更新此表。" 
-  ],
-  "结缘录" : [
-    {
-      "$meta" : {
-        "extensible" : true ,
-        "required" : [
-          "姓名" ,
-          "年龄" ,
-          "命" ,
-          "法" ,
-          "好感度" ,
-          "仙术" ,
-          "背包" 
-        ],
-        "template" : {
-          "姓名" : ["？？？", "字？？？" ],
-          "年龄" : [0, "？？？"],
-          "官职" : ["无" , "？？？"],
-          "武力" : [0, "[1-100+]"],
-          "谋略" : [0, "[1-100+]"],
-          "魅力" : [0, "[1-100+]"],
-          "命" : [100, "【最大生命值】" ],
-          "法" : [100, "【最大法力值】" ],
-          "坐骑" : ["无" , "？？？"],
-          "衣着" : ["暂无描述。" , "当前装束" ],
-          "外貌" : ["暂无描述。" , "外貌特征" ],
-          "武器" : ["【凡品】无" , "？？？"],
-          "好感度" : [0, "[-1000 - +1000] (陌生)"],
-          "当前关系" : ["陌生" , "？？？"],
-          "仙术" : [
-            {
-              "$meta" : {
-                "extensible" : true ,
-                "template" : {
-                  "名称" : ["新仙术" , "【血脉】" ],
-                  "消耗" : ["法力 0" , ""],
-                  "描述" : ["暂无描述。" , ""]
-                }
-              }
-            },
-            "‘将姫’的血脉能力与武技。" 
-          ],
-          "背包" : [
-            {
-              "$meta" : {
-                "extensible" : true ,
-                "template" : {
-                  "名称" : ["新物品" , "【消耗品】" ],
-                  "数量" : [1, "描述：..." ],
-                  "描述" : ["暂无描述。" , ""]
-                }
-              }
-            },
-            "‘将姫’的随身行囊。" 
-          ]
-        }
-      }
-    },
-    "此表记录所有重要NPC的【详细数据】。当<user>遇到新'将姫'时，AI应按此格式添加新条目。" 
-  ],
-  "天下闻" : {
-    "奇闻" : [
-      "（暂无奇闻）" ,
-      "【V4.0规则】战略总览 (已确认的情报)。用 \\n 换行，记录【将姫】的军队动向和【神魔】的踪迹。e.g., \\n【将姫】曹婥(女)已于陈留起兵。\\n【神魔】'魔王'董妵(女)已抵达洛阳。"
-    ],
-    "当前剧情" : [
-      "（等待开局...）" ,
-      "【V4.0规则】<user>的实时冒险日志。总结<user>刚做了什么，和下一步的目标。"
-    ]
-  },
-  "宿命诗" : [
-    "（暂无诗篇）" ,
-    "AI在剧情关键节点创作的七言律诗，总结宿命与史诗。"
-  ]
-}`),n=new Set(['主角','行囊','结缘录','天下闻']),s=260,r={世界:'乾坤之象，风云与共',主角:'天命所钟，英姿无双',行囊:'囊萃百宝，随征万里',关系表:'金兰谱牒，肝胆相照',结缘录:'红尘邂逅，丹青留痕',天下闻:'四海风声，鼓角惊雷',宿命诗:'金石同韵，悲欢共吟'},o={世界:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18m0-18a15 15 0 0 0 0 18"/></svg>',主角:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>',行囊:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-.7 9.4a2 2 0 0 1-2 1.6H7.7a2 2 0 0 1-2-1.6L5 9Z"/><path d="M9 9V6.5A2.5 2.5 0 0 1 11.5 4h1a2.5 2.5 0 0 1 2.5 2.5V9"/></svg>',关系表:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="7" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M7.3 11.3 16.6 7.9M7.3 12.7l9.3 3.4"/></svg>',结缘录:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h9a3 3 0 0 1 3 3v13l-4.5-2L9 20l-.2-.1A3 3 0 0 1 6 17V4Z"/><path d="M9 8h6"/></svg>',天下闻:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4a2 2 0 0 0 2 2h2l4 4V4l-4 4H6a2 2 0 0 0-2 2Z"/><path d="M19 8v8"/></svg>',default:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>'},a={装备:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 7l6-4 6 4M6 17l6 4 6-4"/></svg>',背包:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l1 11a2 2 0 0 1-2 2H7.5a2 2 0 0 1-2-2l1-11Z"/><path d="M9 8V6a3 3 0 0 1 3-3 3 3 0 0 1 3 3v2"/></svg>',default:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="14" height="12" rx="2"/></svg>'},i={时间:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2"/></svg>',地点:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 0 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>',势力:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 8h16M4 16h10"/></svg>',声望:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M5 12h14v7H5z"/></svg>',命:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 5 15 5 9a7 7 0 0 1 14 0c0 6-7 12-7 12Z"/></svg>',法:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/></svg>',武力:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8"/><path d="m6 7 6-4 6 4"/><path d="m6 17 6 4 6-4"/></svg>',谋略:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 8.95-10.2"/><path d="M12 7v5l3 3"/></svg>',魅力:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-7-6.5-7-10A7 7 0 0 1 12 4a7 7 0 0 1 7 7c0 3.5-3 7-7 10Z"/></svg>',官职:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="7" width="12" height="10" rx="2"/><path d="M9 7V5h6v2"/></svg>',血脉:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M7 8c1.5 1.5 3 2 5 2s3.5-.5 5-2"/><path d="M7 16c1.5-1.5 3-2 5-2s3.5.5 5 2"/></svg>',仙术:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.4 4.9L20 9l-4 3.9.9 5.6L12 16l-4.9 2.5.9-5.6L4 9l5.6-.1Z"/></svg>',装备:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14v10H5z"/><path d="M9 7V5h6v2"/></svg>',背包:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10l1 11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2l1-11Z"/></svg>',奇闻:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 7-5 7 5v8l-7 5-7-5V8Z"/><path d="M9 10h6"/></svg>',当前剧情:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 5v14"/><path d="m12 14 2.5 2 3.5-4"/></svg>',关系表:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>',default:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>'},l='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7 10 5 5 5-5"/></svg>';function d(t,e){const n='section'===t?o:'subgroup'===t?a:i,s=n[e]||n.default;if(!s)return null;const r=document.createElement('span');return r.className=`st-ext-icon st-ext-icon-${t}`,r.setAttribute('aria-hidden','true'),r.setAttribute('role','presentation'),r.innerHTML=s,r}function p(t,e={}){const n=document.createElement('section');n.className='st-ext-status-section';const r=document.createElement('h3');r.className='st-ext-status-heading';const o=d('section',t);o&&r.appendChild(o);const a=document.createElement('span');a.className='st-ext-heading-text',a.textContent=t,r.appendChild(a);const i=u(t);i&&r.appendChild(i);const p=document.createElement('div');p.className='st-ext-section-content',n.append(r,p);let c=null;return e.collapsible&&(n.classList.add('st-ext-collapsible'),c=function(t,e,n,r={}){const{collapsed:o=!1,duration:a=s}=r;e.classList.add('st-ext-collapsible-trigger'),e.setAttribute('role','button'),e.setAttribute('aria-expanded',o?'false':'true'),e.tabIndex=0,n.style.transition=`max-height ${a}ms ease, opacity ${a}ms ease`;const i=document.createElement('span');i.className='st-ext-collapse-indicator',i.innerHTML=l,e.appendChild(i);const d=s=>{s?(t.classList.add('is-collapsed'),e.setAttribute('aria-expanded','false'),requestAnimationFrame(()=>{n.style.maxHeight='0px',n.style.opacity='0'})):(t.classList.remove('is-collapsed'),e.setAttribute('aria-expanded','true'),requestAnimationFrame(()=>{n.style.maxHeight=`${n.scrollHeight}px`,n.style.opacity='1'}))},p=()=>{const e=t.classList.contains('is-collapsed');d(!e)};e.addEventListener('click',p),e.addEventListener('keydown',t=>{'Enter'!==t.key&&' '!==t.key||(t.preventDefault(),p())});const c=()=>{t.classList.contains('is-collapsed')||(n.style.maxHeight=`${n.scrollHeight}px`)};if('undefined'!=typeof ResizeObserver){new ResizeObserver(()=>{c()}).observe(n)}return requestAnimationFrame(()=>{d(o)}),{setCollapsed:d,refresh:c}}(n,r,p,e)),{section:n,header:r,content:p,collapseControls:c}}function c(t,e,n){e&&t.appendChild(e);const s=document.createElement('span');s.textContent=n,t.appendChild(s)}function u(t,e={}){const n=r[t];if(!n)return null;const{tagName:s='span',className:o='st-ext-heading-epithet'}=e,a=document.createElement(s);return a.className=o,a.textContent=n,a}function x(t){if(Array.isArray(t)){const[e]=t;return e&&'object'==typeof e&&e.$meta?'（待录入）':e??''}return t&&'object'==typeof t&&t.$meta?'（待录入）':t??''}function g(t,e){const{section:s,content:r,collapseControls:o}=p(t,{collapsible:n.has(t)});let a=null;const i=()=>{a&&a.children.length&&r.appendChild(a),a=null};return Object.entries(e).forEach(([t,e])=>{if(e&&'object'==typeof e&&!Array.isArray(e)&&!e.$meta){i();const n=document.createElement('div');n.className='st-ext-status-subgroup';const s=document.createElement('h4');s.className='st-ext-status-subheading';const o=d('subgroup',t);o&&s.appendChild(o);const a=document.createElement('span');a.className='st-ext-heading-text',a.textContent=t,s.appendChild(a),n.appendChild(s);let l=null;return Object.entries(e).forEach(([t,e])=>{l||(l=document.createElement('dl'),l.className='st-ext-status-list');const n=document.createElement('dt'),s=d('item',t);s&&n.appendChild(s);const r=document.createElement('span');r.textContent=t,n.appendChild(r);const o=document.createElement('dd');o.textContent=x(e)||'—',l.append(n,o)}),l&&n.appendChild(l),void r.appendChild(n)}if(a||(a=document.createElement('dl'),a.className='st-ext-status-list'),Array.isArray(e)&&e.length&&'object'==typeof e[0]&&e[0].$meta){const e=document.createElement('dt'),n=d('item',t);n&&e.appendChild(n);const s=document.createElement('span');s.textContent=t,e.appendChild(s);const r=document.createElement('dd');return r.textContent='（待扩展条目）',void a.append(e,r)}const n=document.createElement('dt'),s=d('item',t);s&&n.appendChild(s);const o=document.createElement('span');o.textContent=t,n.appendChild(o);const l=document.createElement('dd');l.textContent=x(e)||'—',a.append(n,l)}),i(),o&&(o.setCollapsed(!1),o.refresh()),s}function h(t){if('undefined'==typeof window||!window.document)return;const e=document.querySelector('#st-ext-status-bar'),s=e||function(){const t=document.createElement('div');return t.id='st-ext-status-bar',t.className='st-ext-status-bar',t.innerHTML='\n    <header class="st-ext-status-header">\n      <span class="st-ext-status-title st-ext-display-title">无双志</span>\n      <span class="st-ext-status-sub">群英谱牒·风云长歌</span>\n    </header>\n    <div class="st-ext-status-body"></div>\n  ',t}(),r=s.querySelector('.st-ext-status-body');r.innerHTML='';let o=null;if(Object.entries(t).forEach(([t,e])=>{if('宿命诗'===t)return void(o=e);if('关系表'===t){const{section:e,content:s,collapseControls:o}=p(t,{collapsible:n.has(t)}),a=document.createElement('p');return a.className='st-ext-status-placeholder',c(a,d('item',t),'（暂无羁绊记录）'),s.appendChild(a),o&&(o.setCollapsed(!1),o.refresh()),void r.appendChild(e)}if(Array.isArray(e)){const{section:s,content:o,collapseControls:a}=p(t,{collapsible:n.has(t)}),i=document.createElement('p');return i.className='st-ext-status-placeholder',c(i,d('item',t),x(e)||'（待补充）'),o.appendChild(i),a&&(a.setCollapsed(!1),a.refresh()),void r.appendChild(s)}if(e&&'object'==typeof e){const n=g(t,e);return void r.appendChild(n)}const{section:s,content:a,collapseControls:i}=p(t,{collapsible:n.has(t)}),l=document.createElement('p');l.className='st-ext-status-placeholder',c(l,d('item',t),e||'—'),a.appendChild(l),i&&(i.setCollapsed(!1),i.refresh()),r.appendChild(s)}),null!==o){const t=document.createElement('section');t.className='st-ext-status-ode';const e=document.createElement('div');e.className='st-ext-display-title',e.textContent='宿命诗',t.appendChild(e);const n=u('宿命诗',{tagName:'div',className:'st-ext-ode-epithet'});n&&t.appendChild(n);const s=document.createElement('p');s.className='st-ext-status-ode-content',s.textContent=x(o)||'（暂无诗篇）',t.appendChild(s),r.appendChild(t)}e||document.body.appendChild(s)}function b(e){const n=/\[([^\]\n]+)\]\s*([\s\S]*?)(?=\n\[[^\]]+\]|$)/g;let s;for(;null!==(s=n.exec(e));){const e=s[1].trim(),n=s[2].trim(),r=`\n      <div style="display:flex;align-items:flex-start;margin-bottom:8px;">\n        <img src="${t[e]||t['默认']}" alt="${e}" style="width:48px;height:48px;border-radius:50%;margin-right:10px;">\n        <div>\n          <strong style="font-size:1.1em;color:#336;">${e}</strong>\n          <div style="white-space:pre-line;margin-top:3px;">${n}</div>\n        </div>\n      </div>\n    `;window?.TavernHelper?.builtin?.addOneMessage?window.TavernHelper.builtin.addOneMessage({name:e,role:'assistant',message:r,data:{}},{type:'normal',showSwipes:!1}):console.log(`[${e}]`,n)}}!function(){if(window?.TavernHelper?.appendInexistentScriptButtons){window.TavernHelper.appendInexistentScriptButtons([{name:'批量格式化多角色聊天',visible:!0}]);const t=window.getButtonEvent?.('批量格式化多角色聊天');t&&window.eventOn(t,async()=>{let t=prompt('粘贴或输入多角色聊天文本:\n\n格式：[角色名] 内容...');t&&b(t)})}}(),window.multiRoleChatFormatter=b,function(t){if('undefined'==typeof window||!window.document)return;const e=()=>{!function(){if('undefined'==typeof window||!window.document)return;if(document.getElementById('st-ext-status-bar-style'))return;const t=document.createElement('style');t.id='st-ext-status-bar-style',t.textContent=`\n    #st-ext-status-bar {\n      position: fixed;\n      top: 16px;\n      right: 16px;\n      width: 340px;\n      max-height: 80vh;\n      overflow-y: auto;\n      padding: 22px 22px 26px;\n      background: linear-gradient(145deg, rgba(246, 235, 212, 0.94), rgba(230, 210, 174, 0.96));\n      color: #45321a;\n      border-radius: 20px;\n      border: 1px solid rgba(117, 94, 60, 0.35);\n      box-shadow: 0 20px 44px rgba(98, 72, 41, 0.32);\n      background-image:\n        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.42), transparent 60%),\n        radial-gradient(circle at 82% 88%, rgba(210, 181, 136, 0.38), transparent 68%);\n      font-family: "ZCOOL XiaoWei", "Songti SC", "STSong", "Noto Serif SC", serif;\n      z-index: 10000;\n      isolation: isolate;\n      scrollbar-width: thin;\n      scrollbar-color: rgba(152, 118, 72, 0.55) transparent;\n      backdrop-filter: blur(3px);\n    }\n\n    #st-ext-status-bar::before {\n      content: "";\n      position: absolute;\n      inset: 0;\n      border-radius: inherit;\n      background:\n        repeating-linear-gradient(140deg, rgba(124, 95, 58, 0.05) 0 16px, transparent 16px 32px),\n        repeating-linear-gradient(40deg, rgba(255, 255, 255, 0.08) 0 18px, transparent 18px 36px);\n      mix-blend-mode: multiply;\n      opacity: 0.55;\n      pointer-events: none;\n      z-index: -1;\n    }\n\n    #st-ext-status-bar::after {\n      content: "";\n      position: absolute;\n      inset: 4px;\n      border-radius: 16px;\n      border: 1px solid rgba(255, 255, 255, 0.32);\n      pointer-events: none;\n      z-index: -1;\n    }\n\n    #st-ext-status-bar::-webkit-scrollbar {\n      width: 6px;\n    }\n\n    #st-ext-status-bar::-webkit-scrollbar-thumb {\n      background: rgba(152, 118, 72, 0.55);\n      border-radius: 999px;\n    }\n\n    #st-ext-status-bar::-webkit-scrollbar-track {\n      background: transparent;\n    }\n\n    #st-ext-status-bar .st-ext-status-header {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n      align-items: center;\n      padding-bottom: 14px;\n      margin-bottom: 18px;\n      border-bottom: 1px dashed rgba(117, 94, 60, 0.35);\n      position: relative;\n    }\n\n    #st-ext-status-bar .st-ext-status-header::after {\n      content: "";\n      position: absolute;\n      bottom: -1px;\n      width: 72%;\n      height: 2px;\n      background: linear-gradient(90deg, rgba(199, 155, 48, 0), rgba(199, 155, 48, 0.55), rgba(199, 155, 48, 0));\n      transform: translateY(50%);\n      pointer-events: none;\n    }\n\n    #st-ext-status-bar .st-ext-status-body {\n      display: flex;\n      flex-direction: column;\n      gap: 18px;\n    }\n\n    #st-ext-status-bar .st-ext-display-title {\n      font-size: 1.92rem;\n      letter-spacing: 0.18em;\n      font-weight: 700;\n      color: #cfa63a;\n      text-align: center;\n      width: 100%;\n      text-shadow: 0 2px 6px rgba(138, 94, 28, 0.35);\n    }\n\n    #st-ext-status-bar .st-ext-status-title {\n      display: block;\n      text-align: center;\n    }\n\n    #st-ext-status-bar .st-ext-status-sub {\n      font-size: 0.78rem;\n      color: rgba(101, 72, 36, 0.68);\n      letter-spacing: 0.18em;\n    }\n\n    #st-ext-status-bar .st-ext-status-section {\n      margin: 0;\n      padding: 14px 16px 16px;\n      background: rgba(255, 249, 236, 0.68);\n      border-radius: 14px;\n      border: 1px solid rgba(138, 105, 60, 0.25);\n      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);\n      position: relative;\n    }\n\n    #st-ext-status-bar .st-ext-status-section::before {\n      content: "";\n      position: absolute;\n      inset: 0;\n      border-radius: inherit;\n      border: 1px solid rgba(255, 255, 255, 0.3);\n      pointer-events: none;\n      opacity: 0.65;\n      z-index: 0;\n    }\n\n    #st-ext-status-bar .st-ext-status-section::after {\n      content: "";\n      position: absolute;\n      right: 18px;\n      top: 12px;\n      width: 42px;\n      height: 42px;\n      background: radial-gradient(circle at 0% 0%, rgba(199, 155, 48, 0.18), transparent 72%);\n      pointer-events: none;\n      z-index: 0;\n    }\n\n    #st-ext-status-bar .st-ext-status-section > * {\n      position: relative;\n      z-index: 1;\n    }\n\n    #st-ext-status-bar .st-ext-status-section:hover {\n      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 4px 12px rgba(122, 92, 58, 0.16);\n    }\n\n    #st-ext-status-bar .st-ext-status-heading,\n    #st-ext-status-bar .st-ext-status-subheading {\n      display: flex;\n      align-items: center;\n      gap: 10px;\n      margin: 0;\n    }\n\n    #st-ext-status-bar .st-ext-status-heading {\n      font-size: 1.05rem;\n      color: #5d4426;\n      letter-spacing: 0.08em;\n      margin-bottom: 8px;\n      font-weight: 600;\n    }\n\n    #st-ext-status-bar .st-ext-status-heading::after {\n      content: "";\n      flex: 1;\n      height: 1px;\n      background: linear-gradient(90deg, rgba(101, 72, 36, 0.18), rgba(101, 72, 36, 0), rgba(101, 72, 36, 0));\n    }\n\n    #st-ext-status-bar .st-ext-status-subheading {\n      font-size: 0.9rem;\n      margin: 10px 0 6px;\n      color: #6b4d28;\n      letter-spacing: 0.05em;\n      position: relative;\n    }\n\n    #st-ext-status-bar .st-ext-status-subheading::after {\n      content: "";\n      position: absolute;\n      bottom: -4px;\n      left: 34px;\n      right: 0;\n      height: 1px;\n      background: linear-gradient(90deg, rgba(120, 83, 40, 0.25), rgba(120, 83, 40, 0));\n    }\n\n    #st-ext-status-bar .st-ext-heading-text {\n      flex: 0 0 auto;\n    }\n\n    #st-ext-status-bar .st-ext-heading-epithet {\n      margin-left: auto;\n      font-size: 0.76rem;\n      letter-spacing: 0.16em;\n      color: rgba(119, 88, 44, 0.85);\n      display: inline-flex;\n      align-items: center;\n      white-space: nowrap;\n      font-weight: 500;\n      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);\n    }\n\n    #st-ext-status-bar .st-ext-heading-epithet::before,\n    #st-ext-status-bar .st-ext-heading-epithet::after {\n      color: rgba(199, 155, 72, 0.8);\n    }\n\n    #st-ext-status-bar .st-ext-heading-epithet::before {\n      content: '「';\n      margin-right: 3px;\n    }\n\n    #st-ext-status-bar .st-ext-heading-epithet::after {\n      content: '」';\n      margin-left: 3px;\n    }\n\n    #st-ext-status-bar .st-ext-icon {\n      display: inline-flex;\n      align-items: center;\n      justify-content: center;\n      width: 26px;\n      height: 26px;\n      border-radius: 999px;\n      border: 1px solid rgba(149, 119, 77, 0.35);\n      background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.68), rgba(217, 189, 140, 0.18));\n      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.45);\n      color: #71542f;\n      flex-shrink: 0;\n    }\n\n    #st-ext-status-bar .st-ext-icon svg {\n      width: 74%;\n      height: 74%;\n    }\n\n    #st-ext-status-bar .st-ext-icon-subgroup,\n    #st-ext-status-bar .st-ext-icon-item {\n      width: 22px;\n      height: 22px;\n      border-width: 1px;\n    }\n\n    #st-ext-status-bar .st-ext-status-list {\n      display: grid;\n      grid-template-columns: minmax(110px, 128px) 1fr;\n      gap: 6px 12px;\n      margin: 0;\n    }\n\n    #st-ext-status-bar .st-ext-status-list dt {\n      display: flex;\n      align-items: center;\n      gap: 8px;\n      font-size: 0.82rem;\n      color: rgba(92, 68, 37, 0.9);\n      letter-spacing: 0.04em;\n    }\n\n    #st-ext-status-bar .st-ext-status-list dd {\n      margin: 0;\n      font-size: 0.84rem;\n      color: #3b2916;\n      font-weight: 500;\n      padding: 4px 10px;\n      background: rgba(255, 248, 235, 0.72);\n      border-radius: 9px;\n      border: 1px solid rgba(184, 149, 96, 0.18);\n      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);\n    }\n\n    #st-ext-status-bar .st-ext-status-placeholder {\n      margin: 0;\n      font-size: 0.82rem;\n      color: rgba(88, 64, 37, 0.75);\n      display: flex;\n      align-items: center;\n      gap: 8px;\n      background: rgba(255, 248, 235, 0.6);\n      border-radius: 9px;\n      border: 1px dashed rgba(184, 149, 96, 0.38);\n      padding: 6px 10px;\n      font-style: italic;\n    }\n\n    #st-ext-status-bar .st-ext-status-subgroup {\n      padding: 8px 0 0;\n      border-top: 1px dashed rgba(140, 107, 66, 0.24);\n      margin-top: 6px;\n    }\n\n    #st-ext-status-bar .st-ext-status-subgroup:first-of-type {\n      border-top: none;\n      padding-top: 0;\n      margin-top: 0;\n    }\n\n    #st-ext-status-bar .st-ext-section-content {\n      display: flex;\n      flex-direction: column;\n      gap: 10px;\n      padding-top: 6px;\n    }\n\n    #st-ext-status-bar .st-ext-collapsible .st-ext-section-content {\n      overflow: hidden;\n    }\n\n    #st-ext-status-bar .st-ext-collapsible-trigger {\n      cursor: pointer;\n      user-select: none;\n      border-radius: 10px;\n      padding: 2px 6px;\n      transition: background ${s}ms ease, color ${s}ms ease;\n    }\n\n    #st-ext-status-bar .st-ext-collapsible-trigger:hover {\n      background: rgba(210, 178, 128, 0.18);\n    }\n\n    #st-ext-status-bar .st-ext-collapsible-trigger:focus-visible {\n      outline: none;\n      box-shadow: 0 0 0 2px rgba(199, 155, 48, 0.45);\n    }\n\n    #st-ext-status-bar .st-ext-collapse-indicator {\n      margin-left: 12px;\n      display: inline-flex;\n      width: 18px;\n      height: 18px;\n      align-items: center;\n      justify-content: center;\n      color: rgba(116, 88, 52, 0.88);\n      transition: transform ${s}ms ease;\n    }\n\n    #st-ext-status-bar .st-ext-collapsible.is-collapsed .st-ext-collapse-indicator {\n      transform: rotate(-90deg);\n    }\n\n    #st-ext-status-bar .st-ext-collapsible.is-collapsed .st-ext-section-content {\n      opacity: 0;\n    }\n\n    #st-ext-status-bar .st-ext-collapsible .st-ext-section-content {\n      opacity: 1;\n      transition: opacity ${s}ms ease;\n    }\n\n    #st-ext-status-bar .st-ext-status-ode {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      gap: 12px;\n      padding-top: 20px;\n      margin: 4px 0 0;\n      border-top: 1px dashed rgba(117, 94, 60, 0.35);\n    }\n\n    #st-ext-status-bar .st-ext-status-ode::before {\n      content: "";\n      width: 68%;\n      height: 1px;\n      background: linear-gradient(90deg, rgba(199, 155, 48, 0), rgba(199, 155, 48, 0.55), rgba(199, 155, 48, 0));\n    }\n\n    #st-ext-status-bar .st-ext-ode-epithet {\n      font-size: 0.82rem;\n      color: rgba(117, 86, 45, 0.85);\n      letter-spacing: 0.18em;\n      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);\n    }\n\n    #st-ext-status-bar .st-ext-status-ode-content {\n      margin: 0;\n      font-size: 0.94rem;\n      color: #cfa63a;\n      font-weight: 700;\n      letter-spacing: 0.12em;\n      white-space: pre-line;\n      padding: 10px 18px;\n      border-radius: 12px;\n      border: 1px solid rgba(199, 155, 48, 0.42);\n      background: rgba(255, 248, 235, 0.66);\n      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 18px rgba(112, 82, 46, 0.18);\n      text-shadow: 0 1px 4px rgba(98, 68, 24, 0.35);\n    }\n\n    @media (prefers-reduced-motion: reduce) {\n      #st-ext-status-bar {\n        backdrop-filter: none;\n      }\n\n      #st-ext-status-bar .st-ext-collapsible .st-ext-section-content,\n      #st-ext-status-bar .st-ext-collapse-indicator,\n      #st-ext-status-bar .st-ext-collapsible-trigger {\n        transition: none !important;\n      }\n    }\n  `,document.head.appendChild(t)}(),h(t)};'loading'===document.readyState?document.addEventListener('DOMContentLoaded',e,{once:!0}):e()}(e)}},e={};function n(s){var r=e[s];if(void 0!==r)return r.exports;var o=e[s]={exports:{}};return t[s](o,o.exports,n),o.exports}n.n=t=>{var e=t&&t.__esModule?()=>t.default:()=>t;return n.d(e,{a:e}),e},n.d=(t,e)=>{for(var s in e)n.o(e,s)&&!n.o(t,s)&&Object.defineProperty(t,s,{enumerable:!0,get:e[s]})},n.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e);n(224);window.TavernHelper=window.TavernHelper||{};
-//# sourceMappingURL=index.js.map</script><style>:root{color-scheme:only light}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(140deg,#f5ead1 0%,#e7d3a8 48%,#f0e2c2 100%);color:#4d3418;font-family:"ZCOOL XiaoWei","Songti SC","STSong","Noto Serif SC",serif;display:flex;align-items:center;justify-content:center;padding:36px 24px}.preview{max-width:640px;text-align:center;padding:24px 28px;border-radius:18px;background:rgba(255,250,239,0.7);border:1px solid rgba(132,100,58,0.25);box-shadow:0 18px 36px rgba(102,74,41,0.25)}.preview h1{font-size:1.8rem;letter-spacing:0.16em;margin-bottom:0.6em;color:#c79b30}.preview p{color:rgba(89,65,35,0.82);line-height:1.72;margin:0 auto 1.5em;max-width:520px}.preview .hint{font-size:0.85rem;color:rgba(107,79,44,0.65)}
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>无双志 · 天命起源构筑台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="masthead">
+        <div class="masthead__badge">无双志</div>
+        <div>
+          <h1>天命起源构筑台</h1>
+          <p>
+            根据骨架提示为角色规划身份、天赋与行囊。掷动天命点后，在规约内挑选最佳组合，生成独属于你的史诗开端。
+          </p>
+        </div>
+      </header>
 
+      <section class="card destiny" aria-labelledby="destiny-heading">
+        <div class="destiny__header">
+          <div>
+            <h2 id="destiny-heading">天命点</h2>
+            <p class="destiny__sub">掷骰决定起点，所有选项均需消耗相应天命点。</p>
+          </div>
+          <button class="btn" id="roll-button" type="button">掷天命骰</button>
+        </div>
 
-/*# sourceMappingURL=main.css.map*/</style></head><body><main class="preview"><h1>无双志 · 状态栏骨架</h1><p>右上角浮窗为 SillyTavern 扩展状态栏的最新素雅长卷。牛皮纸底纹、金色题头、线描图标与各板块题记均已在脚本中同步， 正式扩展将自动植入相同的界面细节。</p><p class="hint">可在浏览器窗口中滚动查看骨架各分组，留意圆形金箔图标与"乾坤之象"等题签的排布韵味。</p><p class="hint">提示：点击"主角""行囊""结缘录""天下闻"标题可折叠或展开详细条目。</p></main></body></html>
+        <div class="destiny__scoreboard">
+          <div class="scoreboard__item">
+            <span class="scoreboard__label">总额</span>
+            <span class="scoreboard__value" data-role="points-total">36</span>
+          </div>
+          <div class="scoreboard__item">
+            <span class="scoreboard__label">已用</span>
+            <span class="scoreboard__value" data-role="points-spent">0</span>
+          </div>
+          <div class="scoreboard__item">
+            <span class="scoreboard__label">剩余</span>
+            <span class="scoreboard__value" data-role="points-remaining">36</span>
+          </div>
+        </div>
+
+        <progress class="destiny__progress" max="60" value="0" data-role="points-progress"></progress>
+        <p class="destiny__dice" data-role="roll-detail">默认基础 24 点 + 3d6 骰值</p>
+
+        <div class="summary">
+          <h3>消耗明细</h3>
+          <ul class="summary__list" data-role="selection-summary">
+            <li class="summary__empty">尚未选择消耗天命点的项目。</li>
+          </ul>
+        </div>
+
+        <div class="toast" role="status" aria-live="polite" data-role="feedback"></div>
+      </section>
+
+      <div class="layout">
+        <section class="card" aria-labelledby="character-heading">
+          <h2 id="character-heading">角色设定</h2>
+          <div class="field-grid">
+            <label class="field">
+              <span>姓名</span>
+              <input id="name-input" type="text" placeholder="请输入角色姓名" />
+            </label>
+            <label class="field">
+              <span>年龄</span>
+              <input id="age-input" type="number" min="12" max="120" placeholder="例如：21" />
+            </label>
+            <label class="field">
+              <span>性别</span>
+              <select id="gender-select"></select>
+              <div class="custom-input hidden" data-role="gender-custom">
+                <input type="text" id="gender-custom-input" placeholder="输入自定义性别称谓" />
+              </div>
+            </label>
+          </div>
+
+          <div class="field">
+            <span class="field__label">外貌</span>
+            <div class="chip-group" data-role="appearance-options"></div>
+            <div class="custom-input hidden" data-role="appearance-custom">
+              <input type="text" id="appearance-custom" placeholder="输入自定义外貌描述" />
+            </div>
+          </div>
+
+          <label class="field">
+            <span>种族</span>
+            <select id="race-select"></select>
+          </label>
+
+          <div class="field">
+            <span class="field__label">身份</span>
+            <p class="field__hint">不同种族拥有独特身份，每项均会消耗不同天命点。</p>
+            <div class="option-grid" data-options="identity"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="world-heading">
+          <h2 id="world-heading">世界设定</h2>
+          <p class="field__hint">初始时间与地点会影响后续故事走向，可自定义。</p>
+          <label class="field">
+            <span>初始时间</span>
+            <select id="era-select"></select>
+          </label>
+          <div class="custom-input hidden" data-role="era-custom">
+            <input type="text" id="era-custom-input" placeholder="输入自定义年代，如：光和七年" />
+          </div>
+
+          <label class="field">
+            <span>初始地点</span>
+            <select id="location-select"></select>
+          </label>
+          <div class="custom-input hidden" data-role="location-custom">
+            <input type="text" id="location-custom-input" placeholder="输入自定义地点，如：虎牢关·关楼" />
+          </div>
+          <p class="field__hint">选定身份后将出现对应的出生地选项。</p>
+        </section>
+
+        <section class="card" aria-labelledby="talent-heading">
+          <h2 id="talent-heading">天赋与缺陷</h2>
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>天赋</h3>
+              <p>根据种族觉醒专属天赋。每项均需投入天命点。</p>
+            </header>
+            <div class="option-grid" data-options="talent"></div>
+          </div>
+
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>基础仙术</h3>
+              <p>可从基础法术中挑选入门能力，用于战斗与探索。</p>
+            </header>
+            <div class="option-grid" data-options="spell"></div>
+          </div>
+
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>缺陷</h3>
+              <p>选择身体或灵魂的缺陷，亦需要天命点来诠释宿命羁绊。</p>
+            </header>
+            <div class="option-grid" data-options="flaw"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="pack-heading">
+          <h2 id="pack-heading">行囊</h2>
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>装备</h3>
+              <p>从武器、防具与饰品中挑选起始装备。</p>
+            </header>
+            <div class="option-grid" data-options="equipment"></div>
+          </div>
+
+          <div class="option-section">
+            <header class="option-section__header">
+              <h3>特殊物品</h3>
+              <p>可携带至少五件特殊任务道具，增添剧情线索。</p>
+            </header>
+            <div class="option-grid" data-options="item"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="story-heading">
+          <h2 id="story-heading">初始背景故事</h2>
+          <p class="field__hint">根据所选年代、种族与身份生成背景剧本，可在下方自定义补充。</p>
+          <button class="btn btn--secondary" id="generate-background" type="button">生成背景剧本</button>
+          <textarea id="background-output" rows="10" placeholder="点击上方按钮自动生成，亦可直接编写。"></textarea>
+        </section>
+
+        <section class="card start-card" aria-labelledby="start-heading">
+          <h2 id="start-heading">开始</h2>
+          <p class="field__hint">确认所有设定后，即可携带天命踏上征途。</p>
+          <button class="btn btn--primary" id="start-button" type="button">准备开局</button>
+          <div class="start-summary" data-role="start-summary"></div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
