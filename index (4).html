@@ -1260,7 +1260,7 @@ textarea {
         <span class="destiny__glyph" aria-hidden="true"></span>
         <div class="destiny__header">
           <div>
-            <h2 id="destiny-heading">天命点</h2>
+            <h2 id="destiny-heading">〈天命点〉</h2>
             <p class="destiny__sub">掷骰决定起点，所有选项均需消耗相应天命点。</p>
           </div>
           <button class="btn btn--glow" id="roll-button" type="button">掷天命骰</button>
@@ -1282,7 +1282,7 @@ textarea {
         </div>
 
         <progress class="destiny__progress" max="60" value="0" data-role="points-progress"></progress>
-        <p class="destiny__dice" data-role="roll-detail">默认基础 18 点 + 2d6 骰值</p>
+        <p class="destiny__dice" data-role="roll-detail">天命点 = 默认基础 18 点 + 2d6 骰值</p>
 
         <div class="summary">
           <h3>消耗明细</h3>
@@ -1297,7 +1297,7 @@ textarea {
       <div class="layout">
         <div class="layout__column layout__column--primary">
           <section class="card" aria-labelledby="character-heading">
-            <h2 id="character-heading">角色设定</h2>
+            <h2 id="character-heading">〈角色设定〉</h2>
             <div class="field-grid">
               <label class="field">
                 <span>姓名</span>
@@ -1337,7 +1337,7 @@ textarea {
           </section>
 
           <section class="card" aria-labelledby="world-heading">
-            <h2 id="world-heading">世界设定</h2>
+            <h2 id="world-heading">〈世界设定〉</h2>
             <p class="field__hint">初始时间与地点会影响后续故事走向，可自定义。</p>
             <label class="field">
               <span>初始时间</span>
@@ -1358,7 +1358,7 @@ textarea {
           </section>
 
           <section class="card" aria-labelledby="talent-heading">
-            <h2 id="talent-heading">天赋与缺陷</h2>
+            <h2 id="talent-heading">〈天赋与缺陷〉</h2>
             <div class="option-section" data-collapsible>
               <div class="option-section__header">
                 <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="talent-options">
@@ -1402,7 +1402,7 @@ textarea {
 
         <div class="layout__column layout__column--secondary">
           <section class="card" aria-labelledby="pack-heading">
-            <h2 id="pack-heading">行囊</h2>
+            <h2 id="pack-heading">〈行囊〉</h2>
             <div class="option-section" data-collapsible>
               <div class="option-section__header">
                 <button class="collapse-toggle" type="button" aria-expanded="true" aria-controls="equipment-options">
@@ -1431,7 +1431,7 @@ textarea {
           </section>
 
           <section class="card" aria-labelledby="story-heading">
-            <h2 id="story-heading">初始背景故事</h2>
+            <h2 id="story-heading">〈初始背景故事〉</h2>
             <p class="field__hint">根据所选年代、种族与身份生成背景剧本，可在下方自定义补充。</p>
             <button class="btn btn--secondary" id="generate-background" type="button">生成背景剧本</button>
             <textarea id="background-output" rows="10" placeholder="点击上方按钮自动生成，亦可直接编写。"></textarea>
@@ -2108,8 +2108,8 @@ function rollDestinyPoints() {
   const notation = rolls.length > 0 ? rolls.join(' + ') : '0';
   dom.rollDetail.textContent =
     dice > 0
-      ? `基础 ${base} 点 + 骰值 ${notation} = ${total} 点`
-      : `基础 ${base} 点 = ${total} 点`;
+      ? `天命点 = 基础 ${base} 点 + 骰值 ${notation} = ${total} 点`
+      : `天命点 = 基础 ${base} 点 = ${total} 点`;
   updatePointsDisplay();
   showFeedback(`掷骰成功，获得 ${total} 点天命！`, 'success');
 }
@@ -2601,8 +2601,8 @@ function init() {
     const notation = DESTINY_CONFIG.dice > 0 ? `${DESTINY_CONFIG.dice}d${DESTINY_CONFIG.sides}` : '';
     dom.rollDetail.textContent =
       DESTINY_CONFIG.dice > 0
-        ? `默认基础 ${DESTINY_CONFIG.base} 点 + ${notation} 骰值`
-        : `默认基础 ${DESTINY_CONFIG.base} 点`;
+        ? `天命点 = 默认基础 ${DESTINY_CONFIG.base} 点 + ${notation} 骰值`
+        : `天命点 = 默认基础 ${DESTINY_CONFIG.base} 点`;
   }
   attachEventListeners();
   setupCollapsibles();
