@@ -2477,7 +2477,8 @@ function buildStartSummary() {
   const raceName = selectedRace ? selectedRace.name : '未知族裔';
   const identityName = identity ? identity.name : '未明身份';
   const hook = identity?.hook ? `宿命牵引：${identity.hook}` : '命运静待书写。';
-  const narratorMessage = `【${eraLabel} · ${locationLabel}】${heroName}以${raceName}${identityName}之姿踏上征途，手握剩余 ${ledger.remaining} 点天命。${hook}`;
+  const journeyIntro = `【${eraLabel} · ${locationLabel}】${heroName}以${raceName}${identityName}之姿踏上征途`;
+  const narratorMessage = `${journeyIntro}，手握剩余 ${ledger.remaining} 点天命。${hook}`;
   appendDialogueMessage('narrator', narratorMessage);
 }
 
